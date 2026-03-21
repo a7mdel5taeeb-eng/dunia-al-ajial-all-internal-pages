@@ -1,0 +1,1 @@
+Put your hero background video here as hero.mp4 (recommended 8-15s, 1080p, muted loop).
