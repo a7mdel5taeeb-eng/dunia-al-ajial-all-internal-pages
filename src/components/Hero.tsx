@@ -193,11 +193,11 @@ export default function Hero() {
                 label: language === "ar" ? "سنة خبرة" : "Years of Excellence",
               },
               {
-                value: language === "ar" ? "+1200" : "1200+",
+                value: language === "ar" ? "+1400" : "1400+",
                 label: language === "ar" ? "طالب وطالبة" : "Students",
               },
               {
-                value: language === "ar" ? "+40" : "40+",
+                value: language === "ar" ? "+90" : "90+",
                 label: language === "ar" ? "معلم محترف" : "Expert Teachers",
               },
             ].map((item, index) => (
