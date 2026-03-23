@@ -254,7 +254,7 @@ export default function SchoolHistoryPage() {
 
   return (
     <main dir={dir} className="pb-20">
-      <section className="container-page pt-6 md:pt-8">
+      <section className="container-page mt-20 md:mt-24 pt-6 md:pt-8">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
