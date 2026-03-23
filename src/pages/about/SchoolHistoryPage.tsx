@@ -12,9 +12,10 @@ import PageHero from "../../components/PageHero";
 import SectionTitle from "../../components/SectionTitle";
 import InfoCard from "../../components/InfoCard";
 import { useTheme } from "../../contexts/ThemeContext";
+
 export default function SchoolHistoryPage() {
   const { language, dir } = useLanguage();
-    const { theme } = useTheme();
+  const { theme } = useTheme();
   const isArabic = language === "ar";
 
   const content = isArabic
@@ -23,6 +24,12 @@ export default function SchoolHistoryPage() {
         heroTitle: "تاريخ مدارس دنيا الأجيال الدولية",
         heroDescription:
           "رحلة من النمو والتميز الأكاديمي بدأت في الخرج، وامتدت لتبني بيئة تعليمية دولية تجمع بين الجودة، التنوع، والاستعداد للمستقبل.",
+        heroImage: "/images/school-history-hero.jpg",
+        heroImageAlt: "صورة تعبر عن تاريخ مدارس دنيا الأجيال الدولية",
+        heroImageBadge: "منذ 2012",
+        heroImageCardTitle: "مسيرة تعليمية متنامية",
+        heroImageCardText:
+          "بدأت المدرسة رحلتها التعليمية بخطوات ثابتة نحو التميز، حتى أصبحت بيئة دولية متكاملة تصنع المستقبل.",
         introTitle: "نبذة تاريخية",
         introText:
           "تُعد مدارس دنيا الأجيال الدولية (DAIS) من المؤسسات التعليمية المتميزة الواقعة في مدينة الخرج بمنطقة الرياض في المملكة العربية السعودية. ومنذ تأسيسها، التزمت المدرسة بتقديم تعليم عالي الجودة وفق المنهج الأمريكي، مع توفير بيئة متعددة الثقافات تحتضن طلابًا من جنسيات وخلفيات متنوعة.",
@@ -70,7 +77,14 @@ export default function SchoolHistoryPage() {
         universitiesTitle: "وجهات خريجينا الجامعية",
         universitiesSubtitle:
           "التحق خريجو المدرسة بعدد من الجامعات المرموقة داخل المملكة العربية السعودية وخارجها، بما في ذلك:",
-        universities: ["مصر", "تركيا", "الولايات المتحدة الأمريكية", "ماليزيا", "الأردن", "المملكة المتحدة"],
+        universities: [
+          "مصر",
+          "تركيا",
+          "الولايات المتحدة الأمريكية",
+          "ماليزيا",
+          "الأردن",
+          "المملكة المتحدة",
+        ],
         majorsTitle: "التخصصات التي اتجه إليها الخريجون",
         majorsSubtitle:
           "اتجهت الغالبية من خريجي المدرسة إلى تخصصات جامعية مطلوبة ومهمة، من أبرزها:",
@@ -124,6 +138,12 @@ export default function SchoolHistoryPage() {
         heroTitle: "History of Dunia Al-Ajial International Schools",
         heroDescription:
           "A journey of growth and academic excellence that began in Al Kharj and continues to build an international learning environment shaped by quality, diversity, and future readiness.",
+        heroImage: "/images/school-history-hero.jpg",
+        heroImageAlt: "A visual representing the history of Dunia Al-Ajial International Schools",
+        heroImageBadge: "Since 2012",
+        heroImageCardTitle: "A Growing Educational Journey",
+        heroImageCardText:
+          "The school began its journey with a clear vision for excellence and evolved into a complete international learning environment that prepares students for the future.",
         introTitle: "Historical Overview",
         introText:
           "Dunia Al-Ajial International Schools (DAIS) is a premier educational institution located in Al Kharj City, within the Riyadh Province of Saudi Arabia. Since its establishment, DAIS has been committed to delivering high-quality American curriculum education while fostering a multicultural environment that embraces students of diverse nationalities and backgrounds.",
@@ -228,6 +248,74 @@ export default function SchoolHistoryPage() {
         title={content.heroTitle}
         description={content.heroDescription}
       />
+
+      <section className="container-page -mt-2 md:-mt-4">
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.55 }}
+          className="relative overflow-hidden rounded-[2rem] border shadow-sm"
+          style={{
+            borderColor: "var(--border-color)",
+            background: "var(--card-bg)",
+          }}
+        >
+          <div className="relative h-[280px] md:h-[380px] lg:h-[460px]">
+            <img
+              src={content.heroImage}
+              alt={content.heroImageAlt}
+              className="h-full w-full object-cover"
+            />
+
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  theme === "dark"
+                    ? "linear-gradient(180deg, rgba(2,6,23,.18) 0%, rgba(2,6,23,.72) 100%)"
+                    : "linear-gradient(180deg, rgba(15,23,42,.08) 0%, rgba(15,23,42,.52) 100%)",
+              }}
+            />
+
+            <div className="absolute inset-x-0 top-0 flex justify-between p-5 md:p-7">
+              <div
+                className="rounded-full px-4 py-2 text-sm font-semibold backdrop-blur-md"
+                style={{
+                  background:
+                    theme === "dark"
+                      ? "rgba(15,23,42,.55)"
+                      : "rgba(255,255,255,.72)",
+                  color: "white",
+                  border: "1px solid rgba(255,255,255,.18)",
+                }}
+              >
+                {content.heroImageBadge}
+              </div>
+            </div>
+
+            <div className="absolute inset-x-0 bottom-0 p-5 md:p-7 lg:p-8">
+              <div
+                className="max-w-2xl rounded-[1.75rem] p-5 md:p-6 backdrop-blur-md"
+                style={{
+                  background:
+                    theme === "dark"
+                      ? "rgba(15,23,42,.58)"
+                      : "rgba(255,255,255,.18)",
+                  border: "1px solid rgba(255,255,255,.22)",
+                }}
+              >
+                <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white">
+                  {content.heroImageCardTitle}
+                </h2>
+                <p className="mt-3 text-sm md:text-base leading-7 text-white/90">
+                  {content.heroImageCardText}
+                </p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </section>
 
       <section className="container-page mt-10 md:mt-14">
         <motion.div
@@ -518,9 +606,9 @@ export default function SchoolHistoryPage() {
           style={{
             borderColor: "var(--border-color)",
             background:
-  theme === "dark"
-    ? "linear-gradient(135deg, rgba(76,29,149,.18), rgba(15,23,42,.92))"
-    : "linear-gradient(135deg, rgba(245,243,255,1), rgba(255,255,255,1))",
+              theme === "dark"
+                ? "linear-gradient(135deg, rgba(76,29,149,.18), rgba(15,23,42,.92))"
+                : "linear-gradient(135deg, rgba(245,243,255,1), rgba(255,255,255,1))",
           }}
         >
           <SectionTitle title={content.closingTitle} />
