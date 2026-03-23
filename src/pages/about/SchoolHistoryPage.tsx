@@ -8,7 +8,6 @@ import {
   Globe2,
 } from "lucide-react";
 import { useLanguage } from "../../contexts/LanguageContext";
-import PageHero from "../../components/PageHero";
 import SectionTitle from "../../components/SectionTitle";
 import InfoCard from "../../components/InfoCard";
 import { useTheme } from "../../contexts/ThemeContext";
@@ -26,10 +25,11 @@ export default function SchoolHistoryPage() {
           "رحلة من النمو والتميز الأكاديمي بدأت في الخرج، وامتدت لتبني بيئة تعليمية دولية تجمع بين الجودة، التنوع، والاستعداد للمستقبل.",
         heroImage: "/images/school-history-hero.jpg",
         heroImageAlt: "صورة تعبر عن تاريخ مدارس دنيا الأجيال الدولية",
-        heroImageBadge: "منذ 2012",
-        heroImageCardTitle: "مسيرة تعليمية متنامية",
-        heroImageCardText:
-          "بدأت المدرسة رحلتها التعليمية بخطوات ثابتة نحو التميز، حتى أصبحت بيئة دولية متكاملة تصنع المستقبل.",
+        heroBadge: "منذ 2012",
+        heroHighlights: "تعليم دولي • اعتماد أكاديمي • مسيرة نمو مستمرة",
+        heroCardTitle: "رحلة تعليمية متنامية",
+        heroCardText:
+          "بدأت المدرسة رحلتها التعليمية بخطوات ثابتة نحو التميز، حتى أصبحت بيئة دولية متكاملة تصنع المستقبل وتعد الطلاب لعالم سريع التغير.",
         introTitle: "نبذة تاريخية",
         introText:
           "تُعد مدارس دنيا الأجيال الدولية (DAIS) من المؤسسات التعليمية المتميزة الواقعة في مدينة الخرج بمنطقة الرياض في المملكة العربية السعودية. ومنذ تأسيسها، التزمت المدرسة بتقديم تعليم عالي الجودة وفق المنهج الأمريكي، مع توفير بيئة متعددة الثقافات تحتضن طلابًا من جنسيات وخلفيات متنوعة.",
@@ -139,10 +139,13 @@ export default function SchoolHistoryPage() {
         heroDescription:
           "A journey of growth and academic excellence that began in Al Kharj and continues to build an international learning environment shaped by quality, diversity, and future readiness.",
         heroImage: "/images/school-history-hero.jpg",
-        heroImageAlt: "A visual representing the history of Dunia Al-Ajial International Schools",
-        heroImageBadge: "Since 2012",
-        heroImageCardTitle: "A Growing Educational Journey",
-        heroImageCardText:
+        heroImageAlt:
+          "A visual representing the history of Dunia Al-Ajial International Schools",
+        heroBadge: "Since 2012",
+        heroHighlights:
+          "International Education • Academic Accreditation • A Strong Growth Journey",
+        heroCardTitle: "A Growing Educational Journey",
+        heroCardText:
           "The school began its journey with a clear vision for excellence and evolved into a complete international learning environment that prepares students for the future.",
         introTitle: "Historical Overview",
         introText:
@@ -241,10 +244,110 @@ export default function SchoolHistoryPage() {
           "Through its dedication to innovative teaching, modern facilities, and holistic student development, DAIS continues to stand as a leading educational institution in Al Kharj, preparing future generations for success in an increasingly interconnected world.",
       };
 
+  const overlayBackground =
+    theme === "dark"
+      ? "linear-gradient(135deg, rgba(2,6,23,.58) 0%, rgba(30,41,59,.34) 35%, rgba(76,29,149,.22) 100%)"
+      : "linear-gradient(135deg, rgba(15,23,42,.46) 0%, rgba(30,41,59,.24) 35%, rgba(76,29,149,.18) 100%)";
+
+  const cardBackground =
+    theme === "dark" ? "rgba(15,23,42,.42)" : "rgba(255,255,255,.12)";
+
   return (
     <main dir={dir} className="pb-20">
+      <section className="container-page pt-6 md:pt-8">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="relative overflow-hidden rounded-[2rem] border shadow-sm min-h-[520px] md:min-h-[620px] lg:min-h-[680px]"
+          style={{
+            borderColor: "var(--border-color)",
+            background: "var(--card-bg)",
+          }}
+        >
+          <img
+            src={content.heroImage}
+            alt={content.heroImageAlt}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
 
-    
+          <div
+            className="absolute inset-0"
+            style={{
+              background: overlayBackground,
+            }}
+          />
+
+          <div className="absolute inset-0 backdrop-blur-[1.5px]" />
+
+          <div className="relative z-10 flex min-h-[520px] md:min-h-[620px] lg:min-h-[680px] items-center">
+            <div className="w-full px-6 py-10 md:px-10 md:py-12 lg:px-12 lg:py-14">
+              <div className="max-w-4xl">
+                <div
+                  className="inline-flex items-center rounded-full px-5 py-2 text-xs md:text-sm font-semibold tracking-[0.18em] uppercase"
+                  style={{
+                    background: "rgba(139,92,246,.12)",
+                    color: "#c4b5fd",
+                    border: "1px solid rgba(196,181,253,.28)",
+                  }}
+                >
+                  {content.eyebrow}
+                </div>
+
+                <div
+                  className="mt-5 inline-flex items-center rounded-full px-5 py-2 text-xs md:text-sm font-semibold tracking-[0.14em]"
+                  style={{
+                    background: "rgba(255,255,255,.08)",
+                    color: "rgba(255,255,255,.94)",
+                    border: "1px solid rgba(255,255,255,.18)",
+                  }}
+                >
+                  {content.heroHighlights}
+                </div>
+
+                <h1 className="mt-6 max-w-4xl text-white text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.05]">
+                  {content.heroTitle}
+                </h1>
+
+                <p className="mt-6 max-w-3xl text-white/90 text-[17px] md:text-[20px] leading-8 md:leading-9">
+                  {content.heroDescription}
+                </p>
+
+                <div className="mt-8">
+                  <div
+                    className="inline-flex items-center rounded-full px-5 py-2 text-sm md:text-base font-semibold"
+                    style={{
+                      background: "rgba(255,255,255,.10)",
+                      color: "white",
+                      border: "1px solid rgba(255,255,255,.18)",
+                    }}
+                  >
+                    {content.heroBadge}
+                  </div>
+                </div>
+
+                <div className="mt-10 max-w-2xl">
+                  <div
+                    className="rounded-[1.75rem] p-5 md:p-6 backdrop-blur-md"
+                    style={{
+                      background: cardBackground,
+                      border: "1px solid rgba(255,255,255,.18)",
+                      boxShadow: "0 20px 60px rgba(0,0,0,.18)",
+                    }}
+                  >
+                    <h2 className="text-white text-2xl md:text-3xl font-bold">
+                      {content.heroCardTitle}
+                    </h2>
+                    <p className="mt-3 text-white/90 text-[15px] md:text-[17px] leading-7 md:leading-8">
+                      {content.heroCardText}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </section>
 
       <section className="container-page mt-10 md:mt-14">
         <motion.div
