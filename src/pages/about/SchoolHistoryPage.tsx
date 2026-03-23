@@ -243,79 +243,8 @@ export default function SchoolHistoryPage() {
 
   return (
     <main dir={dir} className="pb-20">
-      <PageHero
-        eyebrow={content.eyebrow}
-        title={content.heroTitle}
-        description={content.heroDescription}
-      />
 
-      <section className="container-page -mt-2 md:-mt-4">
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.25 }}
-          transition={{ duration: 0.55 }}
-          className="relative overflow-hidden rounded-[2rem] border shadow-sm"
-          style={{
-            borderColor: "var(--border-color)",
-            background: "var(--card-bg)",
-          }}
-        >
-          <div className="relative h-[280px] md:h-[380px] lg:h-[460px]">
-            <img
-              src={content.heroImage}
-              alt={content.heroImageAlt}
-              className="h-full w-full object-cover"
-            />
-
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  theme === "dark"
-                    ? "linear-gradient(180deg, rgba(2,6,23,.18) 0%, rgba(2,6,23,.72) 100%)"
-                    : "linear-gradient(180deg, rgba(15,23,42,.08) 0%, rgba(15,23,42,.52) 100%)",
-              }}
-            />
-
-            <div className="absolute inset-x-0 top-0 flex justify-between p-5 md:p-7">
-              <div
-                className="rounded-full px-4 py-2 text-sm font-semibold backdrop-blur-md"
-                style={{
-                  background:
-                    theme === "dark"
-                      ? "rgba(15,23,42,.55)"
-                      : "rgba(255,255,255,.72)",
-                  color: "white",
-                  border: "1px solid rgba(255,255,255,.18)",
-                }}
-              >
-                {content.heroImageBadge}
-              </div>
-            </div>
-
-            <div className="absolute inset-x-0 bottom-0 p-5 md:p-7 lg:p-8">
-              <div
-                className="max-w-2xl rounded-[1.75rem] p-5 md:p-6 backdrop-blur-md"
-                style={{
-                  background:
-                    theme === "dark"
-                      ? "rgba(15,23,42,.58)"
-                      : "rgba(255,255,255,.18)",
-                  border: "1px solid rgba(255,255,255,.22)",
-                }}
-              >
-                <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white">
-                  {content.heroImageCardTitle}
-                </h2>
-                <p className="mt-3 text-sm md:text-base leading-7 text-white/90">
-                  {content.heroImageCardText}
-                </p>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </section>
+    
 
       <section className="container-page mt-10 md:mt-14">
         <motion.div
