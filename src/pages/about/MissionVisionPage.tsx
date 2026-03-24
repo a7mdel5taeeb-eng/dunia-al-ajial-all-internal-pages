@@ -125,48 +125,56 @@ export default function MissionVisionPage() {
   return (
     <main className="relative overflow-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-[78vh] md:min-h-[88vh] flex items-center justify-center overflow-hidden pt-24 md:pt-28">
-        <img
-          src="/images/mission-vision-hero.jpg"
-          alt={isArabic ? "الرسالة والرؤية" : "Mission and Vision"}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+      <div className="container-page pt-32 md:pt-40">
+        <section
+          className="relative overflow-hidden rounded-[2rem] border min-h-[420px] md:min-h-[520px] flex items-center justify-center"
+          style={{
+            borderColor:
+              "color-mix(in srgb, var(--accent-primary) 18%, var(--border-color))",
+            boxShadow: "0 18px 50px -32px rgba(15,23,42,.30)",
+          }}
+        >
+          <img
+            src="/images/mission-vision-hero.jpg"
+            alt={isArabic ? "الرسالة والرؤية" : "Mission and Vision"}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
 
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/60" />
+          {/* Dark overlay */}
+          <div className="absolute inset-0 bg-black/58" />
 
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-violet-950/65 via-black/45 to-sky-950/40" />
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-violet-950/60 via-black/35 to-sky-950/35" />
 
-        {/* Soft decorative glow */}
-        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[34rem] h-[34rem] bg-violet-500/20 blur-3xl rounded-full pointer-events-none" />
-        <div className="absolute bottom-0 right-0 w-72 h-72 bg-sky-500/20 blur-3xl rounded-full pointer-events-none" />
+          {/* Soft decorative glow */}
+          <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[34rem] h-[34rem] bg-violet-500/20 blur-3xl rounded-full pointer-events-none" />
+          <div className="absolute bottom-0 right-0 w-72 h-72 bg-sky-500/20 blur-3xl rounded-full pointer-events-none" />
 
-        <div className="container-page relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
-            className="max-w-5xl mx-auto text-center"
-          >
-            <div className="inline-flex items-center rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-4 py-1.5 text-sm font-semibold text-white/95">
-              {content.eyebrow}
-            </div>
+          <div className="relative z-10 max-w-5xl mx-auto text-center px-6 md:px-10">
+            <motion.div
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45 }}
+            >
+              <div className="inline-flex items-center rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-4 py-1.5 text-sm font-semibold text-white/95">
+                {content.eyebrow}
+              </div>
 
-            <h1 className="mt-6 text-4xl md:text-6xl font-bold font-serif tracking-tight text-white">
-              {content.title}
-            </h1>
+              <h1 className="mt-6 text-4xl md:text-6xl font-bold font-serif tracking-tight text-white">
+                {content.title}
+              </h1>
 
-            <p className="mt-5 text-xl md:text-2xl font-semibold text-white/95">
-              {content.heroTitle}
-            </p>
+              <p className="mt-5 text-xl md:text-2xl font-semibold text-white/95">
+                {content.heroTitle}
+              </p>
 
-            <p className="mt-5 max-w-4xl mx-auto text-base md:text-lg leading-8 md:leading-9 text-white/80">
-              {content.heroText}
-            </p>
-          </motion.div>
-        </div>
-      </section>
+              <p className="mt-5 max-w-4xl mx-auto text-base md:text-lg leading-8 md:leading-9 text-white/80">
+                {content.heroText}
+              </p>
+            </motion.div>
+          </div>
+        </section>
+      </div>
 
       {/* Main Content Section */}
       <section className="relative pb-20">
@@ -371,7 +379,9 @@ export default function MissionVisionPage() {
               }}
             >
               {content.homeBtn}
-              <ArrowRight className={`w-4 h-4 ${dir === "rtl" ? "rotate-180" : ""}`} />
+              <ArrowRight
+                className={`w-4 h-4 ${dir === "rtl" ? "rotate-180" : ""}`}
+              />
             </Link>
           </div>
         </div>
