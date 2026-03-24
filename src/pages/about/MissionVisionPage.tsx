@@ -123,237 +123,259 @@ export default function MissionVisionPage() {
       };
 
   return (
-    <section className="relative overflow-hidden pt-32 md:pt-40 pb-20">
-      <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[38rem] h-[38rem] bg-violet-500/10 blur-3xl rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-sky-500/10 blur-3xl rounded-full pointer-events-none" />
+    <main className="relative overflow-hidden">
+      {/* Hero Section */}
+      <section className="relative min-h-[78vh] md:min-h-[88vh] flex items-center justify-center overflow-hidden pt-24 md:pt-28">
+        <img
+          src="/images/mission-vision-hero.jpg"
+          alt={isArabic ? "الرسالة والرؤية" : "Mission and Vision"}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
 
-      <div className="container-page relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 22 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="max-w-5xl mx-auto text-center"
-        >
-          <div className="inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-semibold bg-white/70 dark:bg-white/5 border-[var(--border-color)] text-[var(--accent-primary)]">
-            {content.eyebrow}
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/60" />
+
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-violet-950/65 via-black/45 to-sky-950/40" />
+
+        {/* Soft decorative glow */}
+        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[34rem] h-[34rem] bg-violet-500/20 blur-3xl rounded-full pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-72 h-72 bg-sky-500/20 blur-3xl rounded-full pointer-events-none" />
+
+        <div className="container-page relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45 }}
+            className="max-w-5xl mx-auto text-center"
+          >
+            <div className="inline-flex items-center rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-4 py-1.5 text-sm font-semibold text-white/95">
+              {content.eyebrow}
+            </div>
+
+            <h1 className="mt-6 text-4xl md:text-6xl font-bold font-serif tracking-tight text-white">
+              {content.title}
+            </h1>
+
+            <p className="mt-5 text-xl md:text-2xl font-semibold text-white/95">
+              {content.heroTitle}
+            </p>
+
+            <p className="mt-5 max-w-4xl mx-auto text-base md:text-lg leading-8 md:leading-9 text-white/80">
+              {content.heroText}
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Main Content Section */}
+      <section className="relative pb-20">
+        <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[38rem] h-[38rem] bg-violet-500/10 blur-3xl rounded-full pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-80 h-80 bg-sky-500/10 blur-3xl rounded-full pointer-events-none" />
+
+        <div className="container-page relative z-10">
+          <div className="max-w-6xl mx-auto mt-14 grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <motion.div
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.35 }}
+              className="rounded-[2rem] border p-6 md:p-8 h-full"
+              style={{
+                background:
+                  "color-mix(in srgb, var(--bg-elevated) 90%, transparent)",
+                borderColor:
+                  "color-mix(in srgb, #8b5cf6 16%, var(--border-color))",
+                boxShadow: "0 18px 50px -32px rgba(15,23,42,.22)",
+              }}
+            >
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-5 bg-violet-500/10 text-violet-600 dark:bg-violet-500/15 dark:text-violet-300">
+                <Flag className="w-7 h-7" />
+              </div>
+
+              <div
+                className="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-bold mb-4"
+                style={{
+                  color: "var(--accent-primary)",
+                  background:
+                    "color-mix(in srgb, var(--accent-primary) 10%, transparent)",
+                }}
+              >
+                {content.missionBadge}
+              </div>
+
+              <h2
+                className="text-2xl md:text-3xl font-bold font-serif mb-4"
+                style={{ color: "var(--text-primary)" }}
+              >
+                {content.missionTitle}
+              </h2>
+
+              <p
+                className="text-[1rem] md:text-[1.05rem] leading-8 md:leading-9"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                {content.missionText}
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.35, delay: 0.05 }}
+              className="rounded-[2rem] border p-6 md:p-8 h-full"
+              style={{
+                background:
+                  "color-mix(in srgb, var(--bg-elevated) 90%, transparent)",
+                borderColor:
+                  "color-mix(in srgb, #3b82f6 16%, var(--border-color))",
+                boxShadow: "0 18px 50px -32px rgba(15,23,42,.22)",
+              }}
+            >
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-5 bg-blue-500/10 text-blue-600 dark:bg-blue-500/15 dark:text-blue-300">
+                <Eye className="w-7 h-7" />
+              </div>
+
+              <div
+                className="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-bold mb-4"
+                style={{
+                  color: "#2563eb",
+                  background: "color-mix(in srgb, #2563eb 10%, transparent)",
+                }}
+              >
+                {content.visionBadge}
+              </div>
+
+              <h2
+                className="text-2xl md:text-3xl font-bold font-serif mb-4"
+                style={{ color: "var(--text-primary)" }}
+              >
+                {content.visionTitle}
+              </h2>
+
+              <p
+                className="text-[1rem] md:text-[1.05rem] leading-8 md:leading-9"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                {content.visionText}
+              </p>
+            </motion.div>
           </div>
 
-          <h1
-            className="mt-6 text-4xl md:text-6xl font-bold font-serif tracking-tight"
-            style={{ color: "var(--text-primary)" }}
-          >
-            {content.title}
-          </h1>
-
-          <p
-            className="mt-5 text-xl md:text-2xl font-semibold"
-            style={{ color: "var(--text-primary)" }}
-          >
-            {content.heroTitle}
-          </p>
-
-          <p
-            className="mt-5 max-w-4xl mx-auto text-base md:text-lg leading-8 md:leading-9"
-            style={{ color: "var(--text-secondary)" }}
-          >
-            {content.heroText}
-          </p>
-        </motion.div>
-
-        <div className="max-w-6xl mx-auto mt-14 grid grid-cols-1 lg:grid-cols-2 gap-6">
           <motion.div
             initial={{ opacity: 0, y: 22 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.35 }}
-            className="rounded-[2rem] border p-6 md:p-8 h-full"
-            style={{
-              background: "color-mix(in srgb, var(--bg-elevated) 90%, transparent)",
-              borderColor: "color-mix(in srgb, #8b5cf6 16%, var(--border-color))",
-              boxShadow: "0 18px 50px -32px rgba(15,23,42,.22)",
-            }}
+            transition={{ duration: 0.4 }}
+            className="max-w-6xl mx-auto mt-16 md:mt-20"
           >
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-5 bg-violet-500/10 text-violet-600 dark:bg-violet-500/15 dark:text-violet-300">
-              <Flag className="w-7 h-7" />
+            <div className="text-center mb-8 md:mb-10">
+              <h2
+                className="text-3xl md:text-4xl font-bold font-serif"
+                style={{ color: "var(--text-primary)" }}
+              >
+                {content.valuesTitle}
+              </h2>
             </div>
 
-            <div
-              className="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-bold mb-4"
-              style={{
-                color: "var(--accent-primary)",
-                background: "color-mix(in srgb, var(--accent-primary) 10%, transparent)",
-              }}
-            >
-              {content.missionBadge}
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+              {content.values.map((item, index) => {
+                const Icon = item.icon;
+                return (
+                  <motion.div
+                    key={item.title}
+                    initial={{ opacity: 0, y: 22 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.35, delay: index * 0.05 }}
+                    className="rounded-[1.8rem] border p-6 md:p-7 h-full"
+                    style={{
+                      background:
+                        "color-mix(in srgb, var(--bg-elevated) 88%, transparent)",
+                      borderColor:
+                        "color-mix(in srgb, var(--accent-primary) 12%, var(--border-color))",
+                      boxShadow: "0 18px 50px -32px rgba(15,23,42,.22)",
+                    }}
+                  >
+                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-5 bg-violet-500/10 text-violet-600 dark:bg-violet-500/15 dark:text-violet-300">
+                      <Icon className="w-7 h-7" />
+                    </div>
+
+                    <h3
+                      className="text-2xl font-bold font-serif mb-4"
+                      style={{ color: "var(--text-primary)" }}
+                    >
+                      {item.title}
+                    </h3>
+
+                    <p
+                      className="text-[0.98rem] md:text-[1.02rem] leading-8"
+                      style={{ color: "var(--text-secondary)" }}
+                    >
+                      {item.text}
+                    </p>
+                  </motion.div>
+                );
+              })}
             </div>
-
-            <h2
-              className="text-2xl md:text-3xl font-bold font-serif mb-4"
-              style={{ color: "var(--text-primary)" }}
-            >
-              {content.missionTitle}
-            </h2>
-
-            <p
-              className="text-[1rem] md:text-[1.05rem] leading-8 md:leading-9"
-              style={{ color: "var(--text-secondary)" }}
-            >
-              {content.missionText}
-            </p>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 22 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.35, delay: 0.05 }}
-            className="rounded-[2rem] border p-6 md:p-8 h-full"
-            style={{
-              background: "color-mix(in srgb, var(--bg-elevated) 90%, transparent)",
-              borderColor: "color-mix(in srgb, #3b82f6 16%, var(--border-color))",
-              boxShadow: "0 18px 50px -32px rgba(15,23,42,.22)",
-            }}
+            transition={{ duration: 0.4 }}
+            className="max-w-5xl mx-auto mt-16 md:mt-20 text-center"
           >
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-5 bg-blue-500/10 text-blue-600 dark:bg-blue-500/15 dark:text-blue-300">
-              <Eye className="w-7 h-7" />
-            </div>
-
             <div
-              className="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-bold mb-4"
+              className="rounded-[2rem] border p-6 md:p-8"
               style={{
-                color: "#2563eb",
-                background: "color-mix(in srgb, #2563eb 10%, transparent)",
+                background:
+                  "color-mix(in srgb, var(--bg-elevated) 88%, transparent)",
+                borderColor:
+                  "color-mix(in srgb, var(--accent-primary) 10%, var(--border-color))",
+                boxShadow: "0 18px 50px -32px rgba(15,23,42,.22)",
               }}
             >
-              {content.visionBadge}
+              <p
+                className="text-lg md:text-xl leading-8 md:leading-9"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                {content.closing}
+              </p>
             </div>
-
-            <h2
-              className="text-2xl md:text-3xl font-bold font-serif mb-4"
-              style={{ color: "var(--text-primary)" }}
-            >
-              {content.visionTitle}
-            </h2>
-
-            <p
-              className="text-[1rem] md:text-[1.05rem] leading-8 md:leading-9"
-              style={{ color: "var(--text-secondary)" }}
-            >
-              {content.visionText}
-            </p>
           </motion.div>
-        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 22 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.4 }}
-          className="max-w-6xl mx-auto mt-16 md:mt-20"
-        >
-          <div className="text-center mb-8 md:mb-10">
-            <h2
-              className="text-3xl md:text-4xl font-bold font-serif"
-              style={{ color: "var(--text-primary)" }}
+          <div className="max-w-6xl mx-auto mt-10 flex flex-wrap gap-4 justify-center md:justify-start">
+            <Link
+              to="/academics/early-childhood"
+              className="inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm md:text-base font-bold transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-[1px]"
+              style={{
+                color: "#ffffff",
+                background:
+                  "linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))",
+              }}
             >
-              {content.valuesTitle}
-            </h2>
-          </div>
+              {content.exploreBtn}
+            </Link>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {content.values.map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, y: 22 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.35, delay: index * 0.05 }}
-                  className="rounded-[1.8rem] border p-6 md:p-7 h-full"
-                  style={{
-                    background: "color-mix(in srgb, var(--bg-elevated) 88%, transparent)",
-                    borderColor:
-                      "color-mix(in srgb, var(--accent-primary) 12%, var(--border-color))",
-                    boxShadow: "0 18px 50px -32px rgba(15,23,42,.22)",
-                  }}
-                >
-                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-5 bg-violet-500/10 text-violet-600 dark:bg-violet-500/15 dark:text-violet-300">
-                    <Icon className="w-7 h-7" />
-                  </div>
-
-                  <h3
-                    className="text-2xl font-bold font-serif mb-4"
-                    style={{ color: "var(--text-primary)" }}
-                  >
-                    {item.title}
-                  </h3>
-
-                  <p
-                    className="text-[0.98rem] md:text-[1.02rem] leading-8"
-                    style={{ color: "var(--text-secondary)" }}
-                  >
-                    {item.text}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 22 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.4 }}
-          className="max-w-5xl mx-auto mt-16 md:mt-20 text-center"
-        >
-          <div
-            className="rounded-[2rem] border p-6 md:p-8"
-            style={{
-              background: "color-mix(in srgb, var(--bg-elevated) 88%, transparent)",
-              borderColor:
-                "color-mix(in srgb, var(--accent-primary) 10%, var(--border-color))",
-              boxShadow: "0 18px 50px -32px rgba(15,23,42,.22)",
-            }}
-          >
-            <p
-              className="text-lg md:text-xl leading-8 md:leading-9"
-              style={{ color: "var(--text-secondary)" }}
+            <Link
+              to="/"
+              className="inline-flex items-center justify-center gap-2.5 rounded-full px-6 py-3.5 text-sm font-bold transition-all duration-200 shadow-sm hover:shadow-md"
+              style={{
+                color: "#ffffff",
+                background:
+                  "linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))",
+              }}
             >
-              {content.closing}
-            </p>
+              {content.homeBtn}
+              <ArrowRight className={`w-4 h-4 ${dir === "rtl" ? "rotate-180" : ""}`} />
+            </Link>
           </div>
-        </motion.div>
-
-        <div className="max-w-6xl mx-auto mt-10 flex flex-wrap gap-4 justify-center md:justify-start">
-          <Link
-            to="/academics/early-childhood"
-            className="inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm md:text-base font-bold transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-[1px]"
-            style={{
-              color: "#ffffff",
-              background:
-                "linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))",
-            }}
-          >
-            {content.exploreBtn}
-          </Link>
-
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center gap-2.5 rounded-full px-6 py-3.5 text-sm font-bold transition-all duration-200 shadow-sm hover:shadow-md"
-            style={{
-              color: "#ffffff",
-              background:
-                "linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))",
-            }}
-          >
-            {content.homeBtn}
-            <ArrowRight className={`w-4 h-4 ${dir === "rtl" ? "rotate-180" : ""}`} />
-          </Link>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
   );
 }
