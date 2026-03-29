@@ -72,7 +72,7 @@ export default function CareerPage() {
     <main className="min-h-screen pt-32 pb-16">
       <section className="container-page">
         <div className="max-w-4xl">
-          <div className="inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-semibold mb-6 bg-white/70 dark:bg-white/5 border-[var(--border-color)] text-[var(--accent-primary)]">
+          <div className="inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-semibold mb-6 bg-white/80 dark:bg-slate-800/80 border-[var(--border-color)] text-[var(--accent-primary)] backdrop-blur-sm transition-colors duration-300">
             {isArabic ? careerData.badgeAr : careerData.badgeEn}
           </div>
 
@@ -92,10 +92,10 @@ export default function CareerPage() {
             return (
               <div
                 key={section.titleEn}
-                className="rounded-3xl border p-6 md:p-8 shadow-sm bg-white/80 dark:bg-white/5 border-[var(--border-color)]"
+                className="rounded-3xl border p-6 md:p-8 shadow-sm bg-white dark:bg-slate-900/90 border-[var(--border-color)] backdrop-blur-sm transition-colors duration-300"
               >
                 <div className="flex items-start gap-4">
-                  <div className="shrink-0 rounded-2xl p-3 bg-violet-100 dark:bg-violet-500/10 text-violet-700 dark:text-violet-300">
+                  <div className="shrink-0 rounded-2xl p-3 bg-violet-100 dark:bg-violet-500/15 text-violet-700 dark:text-violet-300">
                     <Icon className="w-6 h-6" />
                   </div>
 
@@ -121,7 +121,7 @@ export default function CareerPage() {
               href={action.href}
               target={action.external ? "_blank" : undefined}
               rel={action.external ? "noreferrer" : undefined}
-              className="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-white shadow-sm transition-transform duration-200 hover:-translate-y-[1px]"
+              className="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-[1px] hover:shadow-md"
               style={{
                 background:
                   "linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))",
