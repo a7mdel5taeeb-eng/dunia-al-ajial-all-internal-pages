@@ -1,5 +1,6 @@
 import { Mail, Sparkles, Users } from "lucide-react";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useTheme } from "../contexts/ThemeContext";
 
 type CareerSection = {
   titleEn: string;
@@ -66,21 +67,46 @@ const careerData = {
 
 export default function CareerPage() {
   const { language } = useLanguage();
+  const { theme } = useTheme();
+
   const isArabic = language === "ar";
+  const isDark = theme === "dark";
 
   return (
-    <main className="min-h-screen pt-32 pb-16 bg-[#f5f7fb] dark:bg-slate-950 transition-colors duration-300">
+    <main
+      className="min-h-screen pt-32 pb-16 transition-colors duration-300"
+      style={{
+        backgroundColor: isDark ? "#020617" : "#f5f7fb",
+      }}
+    >
       <section className="container-page">
         <div className="max-w-4xl">
-          <div className="inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-semibold mb-6 bg-white dark:bg-slate-800 text-[var(--accent-primary)] border-slate-200 dark:border-slate-700 transition-colors duration-300">
+          <div
+            className="inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-semibold mb-6 transition-colors duration-300"
+            style={{
+              backgroundColor: isDark ? "rgba(30, 41, 59, 0.9)" : "#ffffff",
+              borderColor: isDark ? "#334155" : "#e2e8f0",
+              color: "var(--accent-primary)",
+            }}
+          >
             {isArabic ? careerData.badgeAr : careerData.badgeEn}
           </div>
 
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mb-6 transition-colors duration-300">
+          <h1
+            className="text-4xl md:text-5xl font-bold tracking-tight mb-6 transition-colors duration-300"
+            style={{
+              color: isDark ? "#ffffff" : "#0f172a",
+            }}
+          >
             {isArabic ? careerData.titleAr : careerData.titleEn}
           </h1>
 
-          <p className="text-lg leading-8 text-slate-700 dark:text-slate-300 max-w-3xl transition-colors duration-300">
+          <p
+            className="text-lg leading-8 max-w-3xl transition-colors duration-300"
+            style={{
+              color: isDark ? "#cbd5e1" : "#475569",
+            }}
+          >
             {isArabic ? careerData.introAr : careerData.introEn}
           </p>
         </div>
@@ -92,19 +118,41 @@ export default function CareerPage() {
             return (
               <div
                 key={section.titleEn}
-                className="rounded-3xl border p-6 md:p-8 shadow-sm bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 transition-colors duration-300"
+                className="rounded-3xl border p-6 md:p-8 shadow-sm transition-colors duration-300"
+                style={{
+                  backgroundColor: isDark ? "#0f172a" : "#ffffff",
+                  borderColor: isDark ? "#334155" : "#e2e8f0",
+                }}
               >
                 <div className="flex items-start gap-4">
-                  <div className="shrink-0 rounded-2xl p-3 bg-violet-100 dark:bg-violet-500/15 text-violet-700 dark:text-violet-300">
+                  <div
+                    className="shrink-0 rounded-2xl p-3 transition-colors duration-300"
+                    style={{
+                      backgroundColor: isDark
+                        ? "rgba(139, 92, 246, 0.15)"
+                        : "#ede9fe",
+                      color: isDark ? "#c4b5fd" : "#6d28d9",
+                    }}
+                  >
                     <Icon className="w-6 h-6" />
                   </div>
 
                   <div className="flex-1">
-                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+                    <h2
+                      className="text-2xl font-bold mb-4 transition-colors duration-300"
+                      style={{
+                        color: isDark ? "#ffffff" : "#0f172a",
+                      }}
+                    >
                       {isArabic ? section.titleAr : section.titleEn}
                     </h2>
 
-                    <div className="text-slate-700 dark:text-slate-300 leading-8 whitespace-pre-line">
+                    <div
+                      className="leading-8 whitespace-pre-line transition-colors duration-300"
+                      style={{
+                        color: isDark ? "#cbd5e1" : "#475569",
+                      }}
+                    >
                       {isArabic ? section.bodyAr : section.bodyEn}
                     </div>
                   </div>
