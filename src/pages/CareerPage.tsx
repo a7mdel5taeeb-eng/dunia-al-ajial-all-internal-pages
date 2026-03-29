@@ -92,19 +92,19 @@ export default function CareerPage() {
             return (
               <div
                 key={section.titleEn}
-                className="rounded-3xl border p-6 md:p-8 shadow-sm bg-slate-800 dark:bg-slate-900 border-slate-700 transition-colors duration-300"
+                className="rounded-3xl border p-6 md:p-8 shadow-sm bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 transition-colors duration-300"
               >
                 <div className="flex items-start gap-4">
-                  <div className="shrink-0 rounded-2xl p-3 bg-violet-500/15 text-violet-300">
+                  <div className="shrink-0 rounded-2xl p-3 bg-violet-100 dark:bg-violet-500/15 text-violet-700 dark:text-violet-300">
                     <Icon className="w-6 h-6" />
                   </div>
 
                   <div className="flex-1">
-                    <h2 className="text-2xl font-bold text-white mb-4">
+                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
                       {isArabic ? section.titleAr : section.titleEn}
                     </h2>
 
-                    <div className="text-slate-300 leading-8 whitespace-pre-line">
+                    <div className="text-slate-700 dark:text-slate-300 leading-8 whitespace-pre-line">
                       {isArabic ? section.bodyAr : section.bodyEn}
                     </div>
                   </div>
