@@ -571,6 +571,25 @@ export default function Header() {
 
           <div className="xl:hidden flex items-center gap-2 shrink-0">
             <button
+              onClick={toggleLanguage}
+              className="flex items-center justify-center rounded-full transition-all duration-150 shadow-sm px-3 py-2.5 text-[11px] font-bold"
+              style={{
+                color: isScrolled ? "var(--text-primary)" : theme === "dark" ? "#ffffff" : "#334155",
+                background: desktopControlSurface,
+                border: `1px solid ${
+                  isScrolled
+                    ? "var(--border-color)"
+                    : theme === "dark"
+                      ? "rgba(255,255,255,.14)"
+                      : "rgba(148,163,184,.22)"
+                }`,
+              }}
+              aria-label="Toggle language"
+            >
+              {language === "en" ? "AR" : "EN"}
+            </button>
+
+            <button
               onClick={toggleTheme}
               className="p-2.5 rounded-full transition-all duration-150 shadow-sm"
               style={{
@@ -672,17 +691,6 @@ export default function Header() {
                   }}
                 >
                   {language === "ar" ? "سجّل الآن" : "Register Now"}
-                </button>
-
-                <button
-                  onClick={() => {
-                    toggleLanguage();
-                    closeMobileMenu();
-                  }}
-                  className="w-full mt-1 px-4 py-3 rounded-xl text-base font-bold border"
-                  style={{ color: "var(--text-primary)", borderColor: "var(--border-color)" }}
-                >
-                  {language === "en" ? "العربية" : "English"}
                 </button>
               </div>
             </div>
