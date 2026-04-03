@@ -52,7 +52,6 @@ export default function Header() {
     { key: "photoGallery", to: "/gallery" },
     { key: "activities", to: "/activities" },
     { key: "achievements", to: "/achievements" },
-    
   ];
 
   const fallbackMenuLabels =
@@ -88,7 +87,6 @@ export default function Header() {
           sportsAchievements: "Sports & Achievements",
           activities: "Activities",
           achievements: "Achievements",
-          
         };
 
   const getMenuLabel = (menu: Record<string, string> | undefined, key: string) => {
@@ -343,7 +341,7 @@ export default function Header() {
       <div className="container-page">
         <div className="flex items-center justify-between gap-3 md:gap-4">
           <div className="flex items-center gap-3 md:gap-4 shrink-0 min-w-0">
-            <Link to="/" className="flex items-center gap-3 shrink-0 min-w-0 max-w-[78%] lg:max-w-none">
+            <Link to="/" className="flex items-center gap-3 shrink-0 min-w-0 max-w-[78%] xl:max-w-none">
               <img
                 src="/images/logo.png"
                 alt={t.header.schoolName}
@@ -409,7 +407,7 @@ export default function Header() {
             </div>
           </div>
 
-          <nav className="hidden lg:flex items-center gap-1.5 xl:gap-4 min-w-0" ref={dropdownRef}>
+          <nav className="hidden xl:flex items-center gap-1.5 xl:gap-4 min-w-0" ref={dropdownRef}>
             <button
               type="button"
               className={`${desktopNavClass} rounded-full px-2.5 xl:px-3 shrink-0`}
@@ -571,7 +569,7 @@ export default function Header() {
             </div>
           </nav>
 
-          <div className="lg:hidden flex items-center gap-2 shrink-0">
+          <div className="xl:hidden flex items-center gap-2 shrink-0">
             <button
               onClick={toggleTheme}
               className="p-2.5 rounded-full transition-all duration-150 shadow-sm"
@@ -619,7 +617,7 @@ export default function Header() {
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
-            className="lg:hidden px-4 pb-4"
+            className="xl:hidden px-4 pb-4"
           >
             <div
               className="mt-3 rounded-[1.6rem] border shadow-2xl overflow-hidden"
