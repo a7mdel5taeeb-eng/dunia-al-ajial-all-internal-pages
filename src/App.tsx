@@ -17,6 +17,7 @@ import Footer from "./components/Footer";
 import Chatbot from "./components/Chatbot";
 import IntroOverlay from "./components/IntroOverlay";
 import ScrollToTop from "./components/ScrollToTop";
+import SeoMeta from "./components/SeoMeta";
 
 import WhyDaisPage from "./pages/about/WhyDaisPage";
 import CeoWordPage from "./pages/about/CeoWordPage";
@@ -84,6 +85,7 @@ export default function App() {
       <LanguageProvider>
         <BrowserRouter>
           <ScrollToTop />
+          <SeoMeta />
           <Routes>
             <Route element={<SiteLayout />}>
               <Route path="/" element={<HomePage />} />

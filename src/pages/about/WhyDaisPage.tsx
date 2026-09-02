@@ -186,7 +186,7 @@ export default function WhyDaisPage() {
             className="relative overflow-hidden rounded-[2rem] md:rounded-[2.5rem] min-h-[340px] md:min-h-[460px] border"
             style={{
               borderColor: "color-mix(in srgb, var(--accent-primary) 10%, var(--border-color))",
-              backgroundImage: "url('/images/why-dais-hero.jpg')",
+              backgroundImage: "url('/images/why-dais-hero.webp')",
               backgroundSize: "cover",
               backgroundPosition: "center",
               boxShadow: "0 24px 60px -34px rgba(15,23,42,.18)",

@@ -15,7 +15,7 @@ export default function Hero() {
       {/* Background image */}
       <div className="absolute inset-0">
         <img
-          src="/images/hero-school.png"
+          src="/images/hero-school.webp"
           alt={language === "ar" ? "طالب يسير نحو المدرسة" : "Student walking toward school"}
           className="w-full h-full object-cover object-center scale-[1.02]"
         />

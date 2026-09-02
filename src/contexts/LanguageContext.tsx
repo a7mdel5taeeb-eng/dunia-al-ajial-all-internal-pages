@@ -13,11 +13,15 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>('en');
+  const [language, setLanguage] = useState<Language>(() => {
+    const savedLanguage = localStorage.getItem('dais-language');
+    return savedLanguage === 'en' || savedLanguage === 'ar' ? savedLanguage : 'ar';
+  });
 
   useEffect(() => {
     document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.lang = language;
+    localStorage.setItem('dais-language', language);
   }, [language]);
 
   const value = {

@@ -167,7 +167,7 @@ export default function CeoWordPage() {
                   <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-violet-500/10 text-violet-600 dark:bg-violet-500/15 dark:text-violet-300">
                     <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-2 border-violet-200 shadow-md">
   <img
-    src="/images/ceo.png"
+    src="/images/ceo.webp"
     alt={isArabic ? "صورة الرئيس التنفيذي" : "CEO portrait"}
     className="w-full h-full object-cover"
   />

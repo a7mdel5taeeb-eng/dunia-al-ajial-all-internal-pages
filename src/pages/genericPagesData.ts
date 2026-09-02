@@ -133,7 +133,7 @@ export const genericPages: Record<string, GenericPageData> = {
     "These policies organize key aspects of student life at Dunia Al-Ajial International School and promote a safe, respectful, disciplined, and well-structured learning environment for all students. Use the quick links below to move directly to the policy you need.",
   introAr:
     "تنظم هذه السياسات الجوانب الأساسية في حياة الطالب داخل مدارس دنيا الأجيال العالمية، وتهدف إلى تعزيز بيئة تعليمية آمنة، ومحترمة، ومنضبطة، ومنظمة لجميع الطلاب. ويمكنك استخدام الروابط السريعة أدناه للوصول مباشرة إلى السياسة المطلوبة.",
-  heroImage: "/images/school-policies-hero.jpg",
+  heroImage: "/images/school-policies-hero.webp",
 
     actions: [
   { labelEn: "School Bus", labelAr: "الحافلة المدرسية", href: "#policy-school-bus" },
