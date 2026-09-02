@@ -23,6 +23,7 @@ import CeoWordPage from "./pages/about/CeoWordPage";
 import MissionVisionPage from "./pages/about/MissionVisionPage";
 import CodeOfConductPage from "./pages/about/CodeOfConductPage";
 import SchoolHistoryPage from "./pages/about/SchoolHistoryPage";
+import CalendarPage from "./pages/about/CalendarPage";
 
 import DirectorWordPage from "./pages/academics/DirectorWordPage";
 import ElementarySchoolPage from "./pages/academics/ElementarySchoolPage";
@@ -93,6 +94,7 @@ export default function App() {
               <Route path="/about/mission-vision" element={<MissionVisionPage />} />
               <Route path="/about/code-of-conduct" element={<CodeOfConductPage />} />
               <Route path="/about/school-history" element={<SchoolHistoryPage />} />
+              <Route path="/about/calendar" element={<CalendarPage />} />
 
               {/* Career */}
               <Route path="/career" element={<CareerPage />} />
