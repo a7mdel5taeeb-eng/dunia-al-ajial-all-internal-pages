@@ -20,13 +20,13 @@ export default function Footer() {
   },
   {
     label: "Facebook",
-    href: "https://www.facebook.com/...",
+    href: "https://www.facebook.com/people/%D9%85%D8%AF%D8%A7%D8%B1%D8%B3-%D8%AF%D9%86%D9%8A%D8%A7-%D8%A7%D9%84%D8%A3%D8%AC%D9%8A%D8%A7%D9%84-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85%D9%8A%D8%A9-Dunia-AlAjial-International-Schools/61550557628168/",
     icon: FaFacebookF,
     hoverColor: "#2563eb",
   },
   {
     label: "Instagram",
-    href: "https://www.instagram.com/...",
+    href: "https://www.instagram.com/dunia_alajial_schools/",
     icon: FaInstagram,
     hoverColor: "#db2777",
   },
