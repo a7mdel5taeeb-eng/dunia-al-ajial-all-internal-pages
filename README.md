@@ -1,18 +1,63 @@
+# Dunia Al-Ajial International Schools – Internal Pages
 
+A dedicated internal web application for **Dunia Al-Ajial International Schools – Al Kharj**.
 
-# Run and deploy your AI Studio app
+This repository contains the school's internal pages and supporting UI components, designed to provide a consistent, modern, and responsive digital experience for school staff and internal users.
 
-This contains everything you need to run your app locally.
+## Overview
 
-View your app in AI Studio: https://ai.studio/apps/2925d8a9-dda3-490a-9935-1c442935cd1e
+The project is part of the school's wider digital platform and focuses on internal-facing pages rather than the public school website.
 
-## Run Locally
+### Key Features
 
-**Prerequisites:**  Node.js
+- Modern and responsive interface
+- Internal school pages and information sections
+- Consistent school branding and visual identity
+- Arabic and English content support
+- Reusable UI components
+- Mobile-friendly layout
+- Easy to maintain and extend
 
+## Technology Stack
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Modern component-based UI architecture
+
+## Getting Started
+
+### Prerequisites
+
+Make sure you have **Node.js** installed on your computer.
+
+### Installation
+
+Clone the repository and install the project dependencies:
+
+```bash
+npm install
+```
+
+### Run the Development Server
+
+Start the local development server with:
+
+```bash
+npm run dev
+```
+
+Then open the local URL provided by Vite in your browser.
+
+## Project Purpose
+
+The goal of this project is to build and maintain professional internal web pages for **Dunia Al-Ajial International Schools**, supporting the school's digital transformation and providing a reliable foundation for future internal features.
+
+## Development
+
+When adding new pages or components, please keep the existing design system, responsive behavior, bilingual support, and school branding consistent across the application.
+
+## License
+
+This project is intended for internal use by Dunia Al-Ajial International Schools.
