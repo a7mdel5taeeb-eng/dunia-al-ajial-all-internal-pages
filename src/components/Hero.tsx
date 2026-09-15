@@ -18,6 +18,8 @@ export default function Hero() {
           src="/images/hero-school.webp"
           alt={language === "ar" ? "طالب يسير نحو المدرسة" : "Student walking toward school"}
           className="w-full h-full object-cover object-center scale-[1.02]"
+          fetchPriority="high"
+          decoding="async"
         />
 
         {/* Base overlay */}

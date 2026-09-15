@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Outlet, Navigate } from "react-router-dom";
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
@@ -19,28 +19,29 @@ import IntroOverlay from "./components/IntroOverlay";
 import ScrollToTop from "./components/ScrollToTop";
 import SeoMeta from "./components/SeoMeta";
 
-import WhyDaisPage from "./pages/about/WhyDaisPage";
-import CeoWordPage from "./pages/about/CeoWordPage";
-import MissionVisionPage from "./pages/about/MissionVisionPage";
-import CodeOfConductPage from "./pages/about/CodeOfConductPage";
-import SchoolHistoryPage from "./pages/about/SchoolHistoryPage";
-import CalendarPage from "./pages/about/CalendarPage";
+const WhyDaisPage = lazy(() => import("./pages/about/WhyDaisPage"));
+const CeoWordPage = lazy(() => import("./pages/about/CeoWordPage"));
+const MissionVisionPage = lazy(() => import("./pages/about/MissionVisionPage"));
+const CodeOfConductPage = lazy(() => import("./pages/about/CodeOfConductPage"));
+const SchoolHistoryPage = lazy(() => import("./pages/about/SchoolHistoryPage"));
+const CalendarPage = lazy(() => import("./pages/about/CalendarPage"));
+const DirectorWordPage = lazy(() => import("./pages/academics/DirectorWordPage"));
+const ElementarySchoolPage = lazy(() => import("./pages/academics/ElementarySchoolPage"));
+const MiddleHighSchoolPage = lazy(() => import("./pages/academics/MiddleHighSchoolPage"));
+const EarlyChildhoodPage = lazy(() => import("./pages/academics/EarlyChildhoodPage"));
+const AdmissionProcessPage = lazy(() => import("./pages/admissions/AdmissionProcessPage"));
+const RequirementsPage = lazy(() => import("./pages/admissions/RequirementsPage"));
+const FinancialSystemPage = lazy(() => import("./pages/admissions/FinancialSystemPage"));
+const OnlineApplicationPage = lazy(() => import("./pages/admissions/OnlineApplicationPage"));
+const GenericContentPage = lazy(() => import("./pages/GenericContentPage"));
+const CareerPage = lazy(() => import("./pages/CareerPage"));
+const GalleryPage = lazy(() => import("./pages/GalleryPage"));
+const ActivitiesPage = lazy(() => import("./pages/ActivitiesPage"));
+const AchievementsPage = lazy(() => import("./pages/AchievementsPage"));
 
-import DirectorWordPage from "./pages/academics/DirectorWordPage";
-import ElementarySchoolPage from "./pages/academics/ElementarySchoolPage";
-import MiddleHighSchoolPage from "./pages/academics/MiddleHighSchoolPage";
-import EarlyChildhoodPage from "./pages/academics/EarlyChildhoodPage";
-
-import AdmissionProcessPage from "./pages/admissions/AdmissionProcessPage";
-import RequirementsPage from "./pages/admissions/RequirementsPage";
-import FinancialSystemPage from "./pages/admissions/FinancialSystemPage";
-import OnlineApplicationPage from "./pages/admissions/OnlineApplicationPage";
-
-import GenericContentPage from "./pages/GenericContentPage";
-import CareerPage from "./pages/CareerPage";
-import GalleryPage from "./pages/GalleryPage";
-import ActivitiesPage from "./pages/ActivitiesPage";
-import AchievementsPage from "./pages/AchievementsPage";
+function PageLoader() {
+  return <main className="min-h-screen" aria-busy="true" />;
+}
 
 function HomePage() {
   const [introDone, setIntroDone] = useState(false);
@@ -86,6 +87,7 @@ export default function App() {
         <BrowserRouter>
           <ScrollToTop />
           <SeoMeta />
+          <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route element={<SiteLayout />}>
               <Route path="/" element={<HomePage />} />
@@ -125,6 +127,7 @@ export default function App() {
               <Route path="/:section/:page" element={<GenericContentPage />} />
             </Route>
           </Routes>
+          </Suspense>
         </BrowserRouter>
       </LanguageProvider>
     </ThemeProvider>

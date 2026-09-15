@@ -66,14 +66,12 @@ export default function CalendarPage() {
             </div>
           </div>
 
-          <object data={calendarPdf} type="application/pdf" className="h-[72vh] min-h-[580px] w-full rounded-xl border" style={{ borderColor: "var(--border-color)" }}>
-            <p className="p-6 text-center" style={{ color: "var(--text-secondary)" }}>
-              {isArabic ? "لا يدعم متصفحك العرض المباشر للملف." : "Your browser does not support embedded PDFs."}{" "}
-              <a href={calendarPdf} target="_blank" rel="noreferrer" className="font-bold text-violet-600 underline">
-                {isArabic ? "افتح التقويم" : "Open the calendar"}
-              </a>
-            </p>
-          </object>
+          <iframe
+            src={calendarPdf}
+            title={isArabic ? "التقويم الأكاديمي لمدارس دنيا الأجيال" : "Dunia Al-Ajial academic calendar"}
+            className="h-[72vh] min-h-[580px] w-full rounded-xl border bg-white"
+            style={{ borderColor: "var(--border-color)" }}
+          />
         </div>
       </motion.section>
     </main>

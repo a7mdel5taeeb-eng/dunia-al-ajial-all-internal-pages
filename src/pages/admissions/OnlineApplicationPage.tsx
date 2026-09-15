@@ -32,12 +32,22 @@ curriculum:"",
 notes:""
 });
 
+const [privacyConsent, setPrivacyConsent] = useState(false);
+const [website, setWebsite] = useState("");
+
 const handleChange = (e:any)=>{
 setForm({...form,[e.target.name]:e.target.value})
 };
 
 const handleSubmit = async (e:any)=>{
 e.preventDefault();
+
+if (!privacyConsent) {
+  alert(isArabic ? "يرجى الموافقة على سياسة الخصوصية قبل الإرسال." : "Please accept the privacy notice before submitting.");
+  return;
+}
+
+if (website) return;
 
 setLoading(true);
 
@@ -52,25 +62,7 @@ formData.append("subject", "New Student Application - Dunia Al Ajial");
 formData.append("from_name", "Dunia Al-Ajial International School");
 formData.append("from_email", "admission@duniaalajial.edu.sa");
 formData.append("replyto", form.email);
-formData.append("website", "https://duniaalajial.edu.sa");
-
-// نخفي الحقول الأصلية من القالب الافتراضي لو الخدمة تدعم ذلك
-formData.append("studentName", "");
-formData.append("gender", "");
-formData.append("dob", "");
-formData.append("nationality", "");
-formData.append("grade", "");
-formData.append("previousSchool", "");
-formData.append("city", "");
-formData.append("parentName", "");
-formData.append("relationship", "");
-formData.append("mobile", "");
-formData.append("email", "");
-formData.append("id", "");
-formData.append("address", "");
-formData.append("currentGrade", "");
-formData.append("curriculum", "");
-formData.append("notes", "");
+formData.append("website", "https://www.dunia-alajial.com");
 
 // الرسالة المرتبة التي ستظهر في الإيميل
 formData.append(
@@ -233,6 +225,18 @@ borderColor:"var(--border-color)"
 
 <form onSubmit={handleSubmit} className="space-y-8">
 
+<div className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+  <label htmlFor="website">Website</label>
+  <input
+    id="website"
+    name="website"
+    tabIndex={-1}
+    autoComplete="off"
+    value={website}
+    onChange={(event) => setWebsite(event.target.value)}
+  />
+</div>
+
 {step===1 &&(
 
 <div className="grid md:grid-cols-2 gap-6">
@@ -339,6 +343,20 @@ onChange={handleChange}
 <p className="text-lg font-semibold">
 Review your information and submit
 </p>
+
+<label className="mx-auto flex max-w-xl items-start gap-3 rounded-2xl border p-4 text-left text-sm leading-6" style={{borderColor:"var(--border-color)", color:"var(--text-secondary)"}}>
+  <input
+    type="checkbox"
+    checked={privacyConsent}
+    onChange={(event) => setPrivacyConsent(event.target.checked)}
+    className="mt-1 h-4 w-4 shrink-0 accent-violet-600"
+  />
+  <span>
+    {isArabic
+      ? "أوافق على استخدام بياناتي للتواصل معي بخصوص طلب الالتحاق. تُرسل البيانات إلى فريق القبول فقط ولا تُستخدم لأغراض تسويقية."
+      : "I agree that my details may be used to contact me about this admission application. They are sent only to the admissions team and are not used for marketing."}
+  </span>
+</label>
 
 <button
 type="submit"

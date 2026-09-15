@@ -339,9 +339,9 @@ export default function Header() {
       }}
     >
       <div className="container-page">
-        <div className="flex items-center justify-between gap-3 md:gap-4">
-          <div className="flex items-center gap-3 md:gap-4 shrink-0 min-w-0">
-            <Link to="/" className="flex items-center gap-3 shrink-0 min-w-0 max-w-[78%] xl:max-w-none">
+        <div className="flex items-center justify-between gap-2 md:gap-4">
+          <div className="flex flex-1 items-center gap-3 md:gap-4 min-w-0">
+            <Link to="/" className="flex items-center gap-2.5 md:gap-3 shrink min-w-0 max-w-full xl:max-w-none">
               <img
                 src="/images/logo.png"
                 alt={t.header.schoolName}
@@ -353,8 +353,8 @@ export default function Header() {
                 <div
                   className={`font-serif font-bold leading-none tracking-tight transition-all duration-500 ${
                     isScrolled
-                      ? "text-sm lg:text-[1.2rem] xl:text-[1.8rem]"
-                      : "text-lg lg:text-[1.7rem] xl:text-[2.35rem]"
+                  ? "text-sm lg:text-[1.2rem] xl:text-[1.8rem]"
+                      : "text-base sm:text-lg lg:text-[1.7rem] xl:text-[2.35rem]"
                   }`}
                   style={{
                     color: isScrolled ? "var(--text-primary)" : theme === "dark" ? "#ffffff" : "#0f172a",
@@ -569,10 +569,10 @@ export default function Header() {
             </div>
           </nav>
 
-          <div className="xl:hidden flex items-center gap-2 shrink-0">
+          <div className="xl:hidden flex items-center gap-1.5 shrink-0">
             <button
               onClick={toggleLanguage}
-              className="flex items-center justify-center rounded-full transition-all duration-150 shadow-sm px-3 py-2.5 text-[11px] font-bold"
+              className="flex items-center justify-center rounded-full transition-all duration-150 shadow-sm px-2.5 py-2.5 text-[11px] font-bold"
               style={{
                 color: isScrolled ? "var(--text-primary)" : theme === "dark" ? "#ffffff" : "#334155",
                 background: desktopControlSurface,
@@ -591,7 +591,7 @@ export default function Header() {
 
             <button
               onClick={toggleTheme}
-              className="p-2.5 rounded-full transition-all duration-150 shadow-sm"
+              className="p-2.5 rounded-full transition-all duration-150 shadow-sm shrink-0"
               style={{
                 color: isScrolled ? "var(--text-primary)" : theme === "dark" ? "#ffffff" : "#334155",
                 background: desktopControlSurface,
@@ -610,7 +610,7 @@ export default function Header() {
 
             <button
               onClick={() => setIsMenuOpen((prev) => !prev)}
-              className="p-2.5 rounded-full transition-all duration-150 shadow-sm"
+              className="p-2.5 rounded-full transition-all duration-150 shadow-sm shrink-0"
               style={{
                 color: isScrolled ? "var(--text-primary)" : theme === "dark" ? "#ffffff" : "#334155",
                 background: desktopControlSurface,
