@@ -253,7 +253,10 @@ or email:
               borderColor: isDark ? '#334155' : '#d8dee9',
             }}
           >
-            <div className="flex shrink-0 items-center justify-between bg-indigo-700 p-4 text-white">
+            <div
+              className="flex shrink-0 items-center justify-between p-4 text-white"
+              style={{ background: 'linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))' }}
+            >
               <div className="flex items-center gap-2">
                 <div className="bg-white/20 p-1.5 rounded-full">
                   <GraduationCap className="w-5 h-5" />
@@ -282,7 +285,7 @@ or email:
                   <div
                     className={`max-w-[85%] rounded-2xl p-3 ${
                       msg.role === 'user'
-                        ? 'bg-indigo-700 text-white rounded-tr-none rtl:rounded-tl-none rtl:rounded-tr-2xl'
+                        ? 'text-white rounded-tr-none rtl:rounded-tl-none rtl:rounded-tr-2xl'
                         : 'rounded-tl-none border shadow-sm rtl:rounded-tl-2xl rtl:rounded-tr-none'
                     }`}
                     style={
@@ -292,7 +295,7 @@ or email:
                             color: isDark ? '#f8fafc' : '#0f172a',
                             borderColor: isDark ? '#334155' : '#dbe3ee',
                           }
-                        : undefined
+                        : { background: 'linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))' }
                     }
                   >
                     {msg.role === 'model' ? (
@@ -376,7 +379,8 @@ or email:
                 <button
                   type="submit"
                   disabled={!inputText.trim() || isLoading}
-                  className="rounded-full bg-indigo-700 p-2 text-white transition-colors hover:bg-indigo-800 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="rounded-full p-2 text-white transition-all hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-50"
+                  style={{ background: 'linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))' }}
                 >
                   {dir === 'ltr' ? (
                     <Send className="w-5 h-5" />
@@ -394,7 +398,8 @@ or email:
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-[100] flex h-14 w-14 items-center justify-center rounded-full border border-white/25 bg-indigo-700 text-white shadow-lg shadow-indigo-950/30 transition-all hover:bg-indigo-800 hover:shadow-xl"
+        className="fixed bottom-6 right-6 z-[100] flex h-14 w-14 items-center justify-center rounded-full border border-white/25 text-white shadow-lg shadow-indigo-950/30 transition-all hover:brightness-105 hover:shadow-xl"
+        style={{ background: 'linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))' }}
       >
         {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-7 h-7" />}
       </motion.button>
