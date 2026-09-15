@@ -341,7 +341,7 @@ export default function Header() {
       <div className="container-page">
         <div className="flex items-center justify-between gap-2 md:gap-4">
           <div className="flex flex-1 items-center gap-3 md:gap-4 min-w-0">
-            <Link to="/" className="flex items-center gap-2.5 md:gap-3 shrink min-w-0 max-w-full xl:max-w-none">
+            <Link to="/" className="flex items-center gap-2.5 md:gap-3 shrink-0 min-w-0 max-w-full xl:max-w-none">
               <img
                 src="/images/logo.webp"
                 alt={t.header.schoolName}
@@ -382,7 +382,7 @@ export default function Header() {
               </div>
             </Link>
 
-            <div className="hidden xl:flex shrink-0">
+            <div className="hidden min-[1800px]:flex shrink-0">
               <Link
                 to="/admissions/online-application"
                 className={`inline-flex items-center justify-center whitespace-nowrap rounded-full font-semibold tracking-normal transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-[1px] ${
@@ -407,7 +407,7 @@ export default function Header() {
             </div>
           </div>
 
-          <nav className="hidden xl:flex items-center gap-1.5 xl:gap-4 min-w-0" ref={dropdownRef}>
+          <nav className="hidden min-[1800px]:flex items-center gap-1.5 xl:gap-4 min-w-0" ref={dropdownRef}>
             <button
               type="button"
               className={`${desktopNavClass} rounded-full px-2.5 xl:px-3 shrink-0`}
@@ -569,7 +569,7 @@ export default function Header() {
             </div>
           </nav>
 
-          <div className="xl:hidden flex items-center gap-1.5 shrink-0">
+          <div className="min-[1800px]:hidden flex items-center gap-1.5 shrink-0">
             <button
               onClick={toggleLanguage}
               className="flex items-center justify-center rounded-full transition-all duration-150 shadow-sm px-2.5 py-2.5 text-[11px] font-bold"
@@ -636,7 +636,7 @@ export default function Header() {
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
-            className="xl:hidden px-4 pb-4"
+            className="min-[1800px]:hidden px-4 pb-4"
           >
             <div
               className="mt-3 rounded-[1.6rem] border shadow-2xl overflow-hidden"
