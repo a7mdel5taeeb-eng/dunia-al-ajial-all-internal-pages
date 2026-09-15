@@ -136,18 +136,17 @@ export default function Header() {
   };
 
   const mobileMenuVariants: Variants = {
-    hidden: { opacity: 0, y: -14, scale: 0.985 },
+    hidden: { opacity: 0, y: -8 },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
-      transition: { type: "spring", stiffness: 320, damping: 27, when: "beforeChildren", staggerChildren: 0.045 },
+      transition: { duration: 0.16, ease: [0.22, 1, 0.36, 1] },
     },
   };
 
   const mobileMenuItemVariants: Variants = {
-    hidden: { opacity: 0, x: dir === "rtl" ? 10 : -10 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.2, ease: [0.22, 1, 0.36, 1] } },
+    hidden: { opacity: 0, y: 4 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.13, ease: [0.22, 1, 0.36, 1] } },
   };
 
   useEffect(() => {
@@ -293,11 +292,11 @@ export default function Header() {
     items: NavItem[],
     menu: Record<string, string>
   ) => (
-    <motion.div variants={mobileMenuItemVariants} className="rounded-2xl overflow-hidden">
+    <motion.div variants={mobileMenuItemVariants} className="w-full rounded-2xl overflow-hidden">
       <button
         type="button"
         onClick={() => toggleMobileDropdown(dropdownKey)}
-        className="w-full flex items-center justify-end gap-3 px-4 py-3 rounded-xl text-[15px] font-semibold transition-all duration-200 hover:-translate-y-px"
+        className="w-full flex items-center justify-start gap-3 px-4 py-3 rounded-xl text-[15px] font-semibold transition-all duration-200 hover:-translate-y-px"
         style={{
           color: "var(--text-primary)",
           background: theme === "dark" ? "rgba(255,255,255,.035)" : "rgba(15,23,42,.035)",
@@ -667,25 +666,40 @@ export default function Header() {
 
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div ref={dropdownRef} className="px-4 pb-4" variants={mobileMenuVariants} initial="hidden" animate="visible" exit="hidden">
+          <motion.div
+            ref={dropdownRef}
+            className={`absolute top-full z-50 mt-2 w-[min(22rem,calc(100vw-2rem))] ${
+              dir === "rtl"
+                ? "left-4 sm:left-6 lg:left-8 xl:left-[calc((100%-80rem)/2+2rem)]"
+                : "right-4 sm:right-6 lg:right-8 xl:right-[calc((100%-80rem)/2+2rem)]"
+            }`}
+            variants={mobileMenuVariants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+          >
             <motion.div
               initial={{ boxShadow: "0 0 0 rgba(0,0,0,0)" }}
-              animate={{ boxShadow: theme === "dark" ? "0 24px 58px rgba(0,0,0,.42)" : "0 24px 58px rgba(15,23,42,.16)" }}
-              transition={{ duration: 0.32, ease: "easeOut" }}
-              className="mx-auto mt-3 w-full max-w-xl overflow-hidden rounded-[1.6rem] border shadow-2xl"
+              animate={{ boxShadow: theme === "dark" ? "0 18px 42px rgba(0,0,0,.35)" : "0 18px 42px rgba(15,23,42,.15)" }}
+              transition={{ duration: 0.18, ease: "easeOut" }}
+              className="w-full overflow-hidden rounded-2xl border shadow-2xl"
               style={{
-                background: theme === "dark" ? "rgba(15,25,47,.96)" : "rgba(255,255,255,.96)",
-                borderColor: "var(--border-color)",
-                backdropFilter: "blur(20px)",
-                WebkitBackdropFilter: "blur(20px)",
+                background: theme === "dark" ? "rgba(15,25,47,.72)" : "rgba(255,255,255,.78)",
+                borderColor: theme === "dark" ? "rgba(255,255,255,.14)" : "rgba(148,163,184,.28)",
+                backdropFilter: "saturate(150%) blur(22px)",
+                WebkitBackdropFilter: "saturate(150%) blur(22px)",
               }}
             >
-              <motion.div className="space-y-1.5 p-4" variants={{ visible: { transition: { staggerChildren: 0.045 } } }}>
+              <motion.div
+                dir={dir}
+                className={`space-y-1.5 p-2.5 ${dir === "rtl" ? "text-right" : "text-left"}`}
+                variants={{ visible: { transition: { delayChildren: 0.02, staggerChildren: 0.018 } } }}
+              >
                 <motion.button
                   variants={mobileMenuItemVariants}
                   type="button"
                   onClick={() => handleMobileNavigate("/")}
-                  className="block w-full text-start px-4 py-3 rounded-xl text-[15px] font-semibold transition-all duration-200 hover:-translate-y-px"
+                  className="block w-full text-start px-4 py-3 rounded-xl text-[15px] font-semibold transition-all duration-150 hover:-translate-y-px"
                   style={{ color: "var(--text-primary)", background: theme === "dark" ? "rgba(255,255,255,.035)" : "rgba(15,23,42,.035)" }}
                 >
                   {t.header.home}
@@ -700,7 +714,7 @@ export default function Header() {
                   variants={mobileMenuItemVariants}
                   type="button"
                   onClick={() => handleMobileNavigate("/contact/contact-us")}
-                  className="block w-full text-start px-4 py-3 rounded-xl text-[15px] font-semibold transition-all duration-200 hover:-translate-y-px"
+                  className="block w-full text-start px-4 py-3 rounded-xl text-[15px] font-semibold transition-all duration-150 hover:-translate-y-px"
                   style={{ color: "var(--text-primary)", background: theme === "dark" ? "rgba(255,255,255,.035)" : "rgba(15,23,42,.035)" }}
                 >
                   {t.header.contact}
@@ -710,8 +724,8 @@ export default function Header() {
                   variants={mobileMenuItemVariants}
                   type="button"
                   onClick={() => handleMobileNavigate("/career")}
-                  className="block w-full text-start px-4 py-3 rounded-xl text-[15px] font-semibold"
-                  style={{ color: "var(--text-primary)" }}
+                  className="block w-full text-start px-4 py-3 rounded-xl text-[15px] font-semibold transition-all duration-150 hover:-translate-y-px"
+                  style={{ color: "var(--text-primary)", background: theme === "dark" ? "rgba(255,255,255,.035)" : "rgba(15,23,42,.035)" }}
                 >
                   {getMenuLabel(t.header.aboutMenu, "careers")}
                 </motion.button>
