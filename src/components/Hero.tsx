@@ -206,7 +206,7 @@ export default function Hero() {
             ].map((item, index) => (
               <div
                 key={index}
-                className="rounded-[1.35rem] md:rounded-[1.6rem] px-4 py-4 md:px-5 md:py-5 backdrop-blur-md"
+                className="min-w-0 rounded-[1.35rem] px-2 py-4 sm:px-4 md:rounded-[1.6rem] md:px-5 md:py-5 backdrop-blur-md"
                 style={{
                   background: isDark
                     ? "linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05))"
@@ -220,7 +220,7 @@ export default function Hero() {
                 }}
               >
                 <div
-                  className="text-[1.9rem] sm:text-[2.1rem] md:text-3xl font-extrabold leading-none"
+                  className="whitespace-nowrap text-[1.65rem] sm:text-[2.1rem] md:text-3xl font-extrabold leading-none tracking-[-0.04em]"
                   style={{ color: isDark ? "#ffffff" : "#0f172a" }}
                 >
                   {item.value}
