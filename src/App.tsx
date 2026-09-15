@@ -18,6 +18,7 @@ import Chatbot from "./components/Chatbot";
 import IntroOverlay from "./components/IntroOverlay";
 import ScrollToTop from "./components/ScrollToTop";
 import SeoMeta from "./components/SeoMeta";
+import CookieConsent from "./components/CookieConsent";
 
 const WhyDaisPage = lazy(() => import("./pages/about/WhyDaisPage"));
 const CeoWordPage = lazy(() => import("./pages/about/CeoWordPage"));
@@ -76,6 +77,7 @@ function SiteLayout() {
       <Outlet />
       <Footer />
       <Chatbot />
+      <CookieConsent />
     </div>
   );
 }
