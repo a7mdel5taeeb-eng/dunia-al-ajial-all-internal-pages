@@ -51,65 +51,10 @@ if (website) return;
 
 setLoading(true);
 
-const formData = new FormData();
-
-Object.entries(form).forEach(([key, value]) => {
-  formData.append(key, value as string);
-});
-
-formData.append("access_key", "a68b58ed-fb15-4ec2-916d-8adfa00f0d88");
-formData.append("subject", "New Student Application - Dunia Al Ajial");
-formData.append("from_name", "Dunia Al-Ajial International School");
-formData.append("from_email", "admission@duniaalajial.edu.sa");
-formData.append("replyto", form.email);
-formData.append("website", "https://www.dunia-alajial.com");
-
-// الرسالة المرتبة التي ستظهر في الإيميل
-formData.append(
-  "message",
-  `
-New Student Application
-
------------------------------------
-Student Information
------------------------------------
-Student Name: ${form.studentName || "-"}
-Gender: ${form.gender || "-"}
-Date of Birth: ${form.dob || "-"}
-Nationality: ${form.nationality || "-"}
-Grade: ${form.grade || "-"}
-Previous School: ${form.previousSchool || "-"}
-City: ${form.city || "-"}
-
------------------------------------
-Parent Information
------------------------------------
-Parent Name: ${form.parentName || "-"}
-Relationship: ${form.relationship || "-"}
-Mobile: ${form.mobile || "-"}
-Email: ${form.email || "-"}
-ID: ${form.id || "-"}
-Address: ${form.address || "-"}
-
------------------------------------
-Academic Details
------------------------------------
-Current Grade: ${form.currentGrade || "-"}
-Curriculum: ${form.curriculum || "-"}
-
------------------------------------
-Additional Notes
------------------------------------
-${form.notes || "-"}
-
------------------------------------
-Submitted from Dunia Al-Ajial International School Website
-`.trim()
-);
-
-const res = await fetch("https://api.web3forms.com/submit", {
+const res = await fetch("/api/admission", {
   method: "POST",
-  body: formData
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ form, website })
 });
 
 const data = await res.json();

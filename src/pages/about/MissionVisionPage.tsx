@@ -135,7 +135,7 @@ export default function MissionVisionPage() {
           }}
         >
           <img
-            src="/images/mission-vision-hero.jpg"
+            src="/images/mission-vision-hero.webp"
             alt={isArabic ? "الرسالة والرؤية" : "Mission and Vision"}
             className="absolute inset-0 w-full h-full object-cover"
           />

@@ -343,7 +343,7 @@ export default function Header() {
           <div className="flex flex-1 items-center gap-3 md:gap-4 min-w-0">
             <Link to="/" className="flex items-center gap-2.5 md:gap-3 shrink min-w-0 max-w-full xl:max-w-none">
               <img
-                src="/images/logo.png"
+                src="/images/logo.webp"
                 alt={t.header.schoolName}
                 className={`w-auto shrink-0 object-contain transition-all duration-500 ${
                   isScrolled ? "h-10 lg:h-[3.1rem] xl:h-[3.9rem]" : "h-12 lg:h-[60px] xl:h-[72px]"

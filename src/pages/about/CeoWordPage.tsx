@@ -56,7 +56,7 @@ export default function CeoWordPage() {
       {/* Watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03] md:opacity-[0.04]">
         <img
-          src="/images/logo.png"
+          src="/images/logo.webp"
           alt=""
           className="w-[320px] sm:w-[440px] md:w-[620px] lg:w-[760px] select-none"
         />

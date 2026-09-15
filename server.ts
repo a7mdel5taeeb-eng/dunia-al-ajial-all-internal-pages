@@ -3,6 +3,7 @@ import { createServer as createViteServer } from "vite";
 import dotenv from "dotenv";
 import fetch from "node-fetch";
 import { GoogleGenAI } from "@google/genai";
+import admissionHandler from "./api/admission.js";
 
 dotenv.config();
 
@@ -17,6 +18,8 @@ async function startServer() {
   app.get("/api/health", (req, res) => {
     res.json({ status: "ok" });
   });
+
+  app.post("/api/admission", (req, res) => admissionHandler(req, res));
 
   app.get("/api/facebook-news", async (req, res) => {
     const pageId = process.env.FACEBOOK_PAGE_ID || "61550557628168";

@@ -87,7 +87,7 @@ export default function Footer() {
             <div className="min-w-0">
               <div className="flex items-start gap-4">
                 <img
-                  src="/images/logo.png"
+                  src="/images/logo.webp"
                   alt={t.header.schoolName}
                   className="h-14 md:h-16 w-auto object-contain shrink-0"
                 />

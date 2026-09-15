@@ -106,7 +106,7 @@ export default function IntroOverlay({ onFinish }: IntroOverlayProps) {
                   />
 
                   <motion.img
-                    src="/images/logo.png"
+                    src="/images/logo.webp"
                     alt="Dunia Al-Ajial"
                     className="w-[74%] sm:w-[82%] md:w-[96%] object-contain"
                     style={{
