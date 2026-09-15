@@ -323,7 +323,7 @@ export default function Header() {
 
   return (
     <motion.header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
+      className={`fixed top-0 left-0 right-0 z-50 relative transition-all duration-500 ease-out ${
         isScrolled ? "py-2.5 md:py-3 shadow-premium" : "py-4 md:py-5"
       }`}
       style={{
@@ -340,7 +340,7 @@ export default function Header() {
     >
       <div className="container-page">
         <div className="flex items-center justify-between gap-2 md:gap-4">
-          <div className="flex flex-1 xl:flex-none items-center gap-2.5 xl:gap-3 min-w-0">
+          <div className="flex flex-1 xl:flex-none xl:ml-32 items-center gap-2.5 xl:gap-3 min-w-0">
             <Link to="/" className="flex items-center gap-2.5 md:gap-3 shrink-0 min-w-0 max-w-full xl:max-w-none">
               <img
                 src="/images/logo.webp"
@@ -381,23 +381,6 @@ export default function Header() {
                 </div>
               </div>
             </Link>
-
-            <div className="hidden xl:flex shrink-0">
-              <Link
-                to="/admissions/online-application"
-                className={`inline-flex items-center justify-center whitespace-nowrap rounded-full font-semibold tracking-normal transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-[1px] ${
-                  isScrolled ? "px-2.5 py-2 text-[12px]" : "px-3 py-2.5 text-[13px]"
-                }`}
-                style={{
-                  color: "#ffffff",
-                  background: "linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))",
-                  border: "1px solid rgba(255,255,255,.10)",
-                  minWidth: isScrolled ? 98 : 106,
-                }}
-              >
-                {language === "ar" ? "سجّل الآن" : "Register Now"}
-              </Link>
-            </div>
 
           </div>
 
@@ -635,6 +618,21 @@ export default function Header() {
           </div>
         </div>
       </div>
+
+      <Link
+        to="/admissions/online-application"
+        className={`hidden xl:inline-flex absolute left-6 top-1/2 -translate-y-1/2 items-center justify-center whitespace-nowrap rounded-full font-semibold tracking-normal transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-[calc(50%+1px)] ${
+          isScrolled ? "px-2.5 py-2 text-[12px]" : "px-3 py-2.5 text-[13px]"
+        }`}
+        style={{
+          color: "#ffffff",
+          background: "linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))",
+          border: "1px solid rgba(255,255,255,.10)",
+          minWidth: isScrolled ? 98 : 106,
+        }}
+      >
+        {language === "ar" ? "سجّل الآن" : "Register Now"}
+      </Link>
 
       <AnimatePresence>
         {isMenuOpen && (
