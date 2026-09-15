@@ -382,29 +382,6 @@ export default function Header() {
               </div>
             </Link>
 
-            <div className="hidden min-[1800px]:flex shrink-0">
-              <Link
-                to="/admissions/online-application"
-                className={`inline-flex items-center justify-center whitespace-nowrap rounded-full font-semibold tracking-normal transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-[1px] ${
-                  isScrolled
-                    ? "px-3.5 py-2 text-[13px]"
-                    : "px-4 py-2.5 text-sm"
-                }`}
-                style={{
-                  color: "#ffffff",
-                  background: "linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))",
-                  border: "1px solid rgba(255,255,255,.10)",
-                  minWidth: isScrolled ? 108 : 118,
-                  boxShadow: isScrolled
-                    ? theme === "dark"
-                      ? "0 10px 26px rgba(0,0,0,.24)"
-                      : "0 10px 26px rgba(109,40,217,.18)"
-                    : undefined,
-                }}
-              >
-                {language === "ar" ? "سجّل الآن" : "Register Now"}
-              </Link>
-            </div>
           </div>
 
           <nav className="hidden min-[1800px]:flex items-center gap-1.5 xl:gap-4 min-w-0" ref={dropdownRef}>
