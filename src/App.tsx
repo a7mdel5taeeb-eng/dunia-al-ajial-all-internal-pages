@@ -1,20 +1,12 @@
 import { BrowserRouter, Routes, Route, Outlet, Navigate } from "react-router-dom";
-import { lazy, Suspense, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
 
 import Header from "./components/Header";
 import Hero from "./components/Hero";
-import Highlights from "./components/Highlights";
-import Stats from "./components/Stats";
-import Programs from "./components/Programs";
-import Gallery from "./components/Gallery";
-import NewsSection from "./components/NewsSection";
-import BranchesMap from "./components/BranchesMap";
-import CTA from "./components/CTA";
 import Footer from "./components/Footer";
-import Chatbot from "./components/Chatbot";
 import IntroOverlay from "./components/IntroOverlay";
 import ScrollToTop from "./components/ScrollToTop";
 import SeoMeta from "./components/SeoMeta";
@@ -39,6 +31,14 @@ const CareerPage = lazy(() => import("./pages/CareerPage"));
 const GalleryPage = lazy(() => import("./pages/GalleryPage"));
 const ActivitiesPage = lazy(() => import("./pages/ActivitiesPage"));
 const AchievementsPage = lazy(() => import("./pages/AchievementsPage"));
+const Highlights = lazy(() => import("./components/Highlights"));
+const Stats = lazy(() => import("./components/Stats"));
+const Programs = lazy(() => import("./components/Programs"));
+const Gallery = lazy(() => import("./components/Gallery"));
+const NewsSection = lazy(() => import("./components/NewsSection"));
+const BranchesMap = lazy(() => import("./components/BranchesMap"));
+const CTA = lazy(() => import("./components/CTA"));
+const Chatbot = lazy(() => import("./components/Chatbot"));
 
 function PageLoader() {
   return <main className="min-h-screen" aria-busy="true" />;
@@ -58,25 +58,38 @@ function HomePage() {
         }}
       >
         <Hero />
-        <Highlights />
-        <Stats />
-        <Programs />
-        <Gallery />
-        <NewsSection />
-        <BranchesMap />
-        <CTA />
+        <Suspense fallback={null}>
+          <Highlights />
+          <Stats />
+          <Programs />
+          <Gallery />
+          <NewsSection />
+          <BranchesMap />
+          <CTA />
+        </Suspense>
       </main>
     </>
   );
 }
 
 function SiteLayout() {
+  const [loadChatbot, setLoadChatbot] = useState(false);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setLoadChatbot(true), 1200);
+    return () => window.clearTimeout(timer);
+  }, []);
+
   return (
     <div className="min-h-screen font-sans transition-colors duration-300">
       <Header />
       <Outlet />
       <Footer />
-      <Chatbot />
+      {loadChatbot && (
+        <Suspense fallback={null}>
+          <Chatbot />
+        </Suspense>
+      )}
       <CookieConsent />
     </div>
   );

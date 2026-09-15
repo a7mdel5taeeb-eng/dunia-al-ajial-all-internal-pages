@@ -88,7 +88,7 @@ const Counter: React.FC<CounterProps> = ({ value, label, icon: Icon, id }) => {
         >
           {isCogniaCard ? (
             <div className="mb-6 flex items-center justify-center">
-              <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white dark:bg-white/95 shadow-md flex items-center justify-center p-2 border border-slate-200 dark:border-white/10 overflow-hidden">
+              <div className="h-16 w-16 rounded-full border border-slate-200 bg-white p-1.5 shadow-sm dark:border-white/10 dark:bg-white/95">
                 <img
                   src="/images/cognia.png"
                   alt="Cognia Accredited"
