@@ -17,7 +17,6 @@ interface NewsItem {
 const FALLBACK_IMAGE = "/images/news-fallback.jpg";
 
 const RSS_FEED_URL = "https://rss.app/feeds/3wzt0k2KADvSpgD4.xml";
-const RSS_TO_JSON_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_FEED_URL)}`;
 
 const stripHtml = (html: string) => {
   return html
@@ -91,6 +90,19 @@ const getImageFromPost = (post: any) => {
   }
 
   return FALLBACK_IMAGE;
+};
+
+const getRssNodeText = (item: Element, tagName: string) =>
+  item.getElementsByTagName(tagName)[0]?.textContent?.trim() || "";
+
+const parseRssItems = (xml: string) => {
+  const document = new DOMParser().parseFromString(xml, "application/xml");
+
+  if (document.querySelector("parsererror")) {
+    throw new Error("Unable to parse the RSS feed");
+  }
+
+  return Array.from(document.getElementsByTagName("item"));
 };
 
 const formatDate = (dateString?: string, language?: string) => {
@@ -266,19 +278,25 @@ export default function NewsSection() {
         setLoading(true);
         setError(false);
 
-        const rssResponse = await fetch(RSS_TO_JSON_URL);
+        // RSS.app permits browser requests directly and publishes updates faster than
+        // the previous rss2json intermediary. The timestamp bypasses stale browser/CDN caches.
+        const rssResponse = await fetch(`${RSS_FEED_URL}?updated=${Date.now()}`, {
+          cache: "no-store",
+        });
 
         if (!rssResponse.ok) {
           throw new Error("RSS feed request failed");
         }
 
-        const rssData = await rssResponse.json();
+        const rssItems = parseRssItems(await rssResponse.text());
 
-        if (rssData.items && Array.isArray(rssData.items) && rssData.items.length > 0) {
-          const rssNews: NewsItem[] = rssData.items.slice(0, 5).map((post: any) => {
-            const cleanTitle = stripHtml(post.title || "");
-            const cleanDescription = stripHtml(post.description || post.content || "");
-            const extractedImage = getImageFromPost(post);
+        if (rssItems.length > 0) {
+          const rssNews: NewsItem[] = rssItems.slice(0, 5).map((post) => {
+            const description = getRssNodeText(post, "description");
+            const enclosure = post.getElementsByTagName("enclosure")[0];
+            const media = post.getElementsByTagName("media:content")[0];
+            const cleanTitle = stripHtml(getRssNodeText(post, "title"));
+            const cleanDescription = stripHtml(description);
 
             return {
               title: truncateText(
@@ -292,10 +310,14 @@ export default function NewsSection() {
                     : "View the full update on our official page."),
                 160
               ),
-              url: post.link || "#",
+              url: getRssNodeText(post, "link") || "#",
               source: "Facebook",
-              date: formatDate(post.pubDate, language),
-              image: extractedImage,
+              date: formatDate(getRssNodeText(post, "pubDate"), language),
+              image: getImageFromPost({
+                enclosure: { url: enclosure?.getAttribute("url") },
+                image: media?.getAttribute("url"),
+                description,
+              }),
             };
           });
 
