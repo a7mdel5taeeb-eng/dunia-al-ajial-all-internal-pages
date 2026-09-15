@@ -2,7 +2,7 @@ import { Menu, X, Globe, Moon, Sun, ChevronDown } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useTheme } from "../contexts/ThemeContext";
-import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "motion/react";
+import { motion, useScroll, useMotionValueEvent, AnimatePresence, type Variants } from "motion/react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { NavItem } from "../data/navigation";
 
@@ -133,6 +133,21 @@ export default function Header() {
 
   const handleMobileNavigate = (to: string) => {
     handleNavAction(to);
+  };
+
+  const mobileMenuVariants: Variants = {
+    hidden: { opacity: 0, y: -14, scale: 0.985 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { type: "spring", stiffness: 320, damping: 27, when: "beforeChildren", staggerChildren: 0.045 },
+    },
+  };
+
+  const mobileMenuItemVariants: Variants = {
+    hidden: { opacity: 0, x: dir === "rtl" ? 10 : -10 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.2, ease: [0.22, 1, 0.36, 1] } },
   };
 
   useEffect(() => {
@@ -278,19 +293,24 @@ export default function Header() {
     items: NavItem[],
     menu: Record<string, string>
   ) => (
-    <div className="rounded-2xl overflow-hidden border border-transparent">
+    <motion.div variants={mobileMenuItemVariants} className="rounded-2xl overflow-hidden">
       <button
         type="button"
         onClick={() => toggleMobileDropdown(dropdownKey)}
-        className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-[15px] font-semibold transition-colors"
-        style={{ color: "var(--text-primary)" }}
+        className="w-full flex items-center justify-end gap-3 px-4 py-3 rounded-xl text-[15px] font-semibold transition-all duration-200 hover:-translate-y-px"
+        style={{
+          color: "var(--text-primary)",
+          background: theme === "dark" ? "rgba(255,255,255,.035)" : "rgba(15,23,42,.035)",
+        }}
       >
-        <span>{label}</span>
-        <ChevronDown
-          className={`h-4 w-4 transition-transform duration-200 ${
-            activeMobileDropdown === dropdownKey ? "rotate-180" : ""
-          }`}
-        />
+        <span className="flex items-center gap-3">
+          <span>{label}</span>
+          <ChevronDown
+            className={`h-4 w-4 transition-transform duration-200 ${
+              activeMobileDropdown === dropdownKey ? "rotate-180" : ""
+            }`}
+          />
+        </span>
       </button>
 
       <AnimatePresence initial={false}>
@@ -318,7 +338,7 @@ export default function Header() {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 
   return (
@@ -384,7 +404,7 @@ export default function Header() {
 
           </div>
 
-          <nav className="hidden" ref={dropdownRef}>
+          <nav className="hidden">
             <button
               type="button"
               className={`${desktopNavClass} rounded-full px-2.5 xl:px-3 shrink-0`}
@@ -559,8 +579,16 @@ export default function Header() {
             >
               {language === "ar" ? "سجّل الآن" : "Register Now"}
             </Link>
-            <button
+            <motion.button
               onClick={toggleLanguage}
+              animate={{
+                boxShadow: [
+                  "0 0 0 rgba(139,92,246,0)",
+                  "0 0 15px rgba(139,92,246,.28)",
+                  "0 0 0 rgba(139,92,246,0)",
+                ],
+              }}
+              transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
               className="flex items-center justify-center rounded-full transition-all duration-150 shadow-sm px-2.5 py-2.5 text-[11px] font-bold"
               style={{
                 color: isScrolled ? "var(--text-primary)" : theme === "dark" ? "#ffffff" : "#334155",
@@ -576,10 +604,18 @@ export default function Header() {
               aria-label="Toggle language"
             >
               {language === "en" ? "AR" : "EN"}
-            </button>
+            </motion.button>
 
-            <button
+            <motion.button
               onClick={toggleTheme}
+              animate={{
+                boxShadow: [
+                  "0 0 0 rgba(139,92,246,0)",
+                  "0 0 15px rgba(139,92,246,.28)",
+                  "0 0 0 rgba(139,92,246,0)",
+                ],
+              }}
+              transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: 0.55 }}
               className="p-2.5 rounded-full transition-all duration-150 shadow-sm shrink-0"
               style={{
                 color: isScrolled ? "var(--text-primary)" : theme === "dark" ? "#ffffff" : "#334155",
@@ -595,11 +631,19 @@ export default function Header() {
               aria-label="Toggle theme"
             >
               {theme === "dark" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
-            </button>
+            </motion.button>
 
-            <button
+            <motion.button
               onClick={() => setIsMenuOpen((prev) => !prev)}
-              className="p-2.5 rounded-full transition-all duration-150 shadow-sm shrink-0"
+              animate={{
+                boxShadow: [
+                  "0 0 0 rgba(139,92,246,0)",
+                  "0 0 15px rgba(139,92,246,.28)",
+                  "0 0 0 rgba(139,92,246,0)",
+                ],
+              }}
+              transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: 1.1 }}
+              className="relative p-2.5 rounded-full transition-colors duration-150 shadow-sm shrink-0"
               style={{
                 color: isScrolled ? "var(--text-primary)" : theme === "dark" ? "#ffffff" : "#334155",
                 background: desktopControlSurface,
@@ -613,22 +657,22 @@ export default function Header() {
               }}
               aria-label="Menu"
             >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
+              <span className="flex">
+                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </span>
+            </motion.button>
           </div>
         </div>
       </div>
 
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            className="px-4 pb-4"
-          >
-            <div
-              className="mt-3 rounded-[1.6rem] border shadow-2xl overflow-hidden"
+          <motion.div ref={dropdownRef} className="px-4 pb-4" variants={mobileMenuVariants} initial="hidden" animate="visible" exit="hidden">
+            <motion.div
+              initial={{ boxShadow: "0 0 0 rgba(0,0,0,0)" }}
+              animate={{ boxShadow: theme === "dark" ? "0 24px 58px rgba(0,0,0,.42)" : "0 24px 58px rgba(15,23,42,.16)" }}
+              transition={{ duration: 0.32, ease: "easeOut" }}
+              className="mx-auto mt-3 w-full max-w-xl overflow-hidden rounded-[1.6rem] border shadow-2xl"
               style={{
                 background: theme === "dark" ? "rgba(15,25,47,.96)" : "rgba(255,255,255,.96)",
                 borderColor: "var(--border-color)",
@@ -636,40 +680,44 @@ export default function Header() {
                 WebkitBackdropFilter: "blur(20px)",
               }}
             >
-              <div className="container-page py-4 space-y-2">
-                <button
+              <motion.div className="space-y-1.5 p-4" variants={{ visible: { transition: { staggerChildren: 0.045 } } }}>
+                <motion.button
+                  variants={mobileMenuItemVariants}
                   type="button"
                   onClick={() => handleMobileNavigate("/")}
-                  className="block w-full text-start px-4 py-3 rounded-xl text-[15px] font-semibold"
-                  style={{ color: "var(--text-primary)" }}
+                  className="block w-full text-start px-4 py-3 rounded-xl text-[15px] font-semibold transition-all duration-200 hover:-translate-y-px"
+                  style={{ color: "var(--text-primary)", background: theme === "dark" ? "rgba(255,255,255,.035)" : "rgba(15,23,42,.035)" }}
                 >
                   {t.header.home}
-                </button>
+                </motion.button>
 
                 {renderMobileDropdown("mobile-about", t.header.about, aboutItems, t.header.aboutMenu)}
                 {renderMobileDropdown("mobile-academics", t.header.academics, academicsItems, t.header.academicsMenu)}
                 {renderMobileDropdown("mobile-admissions", t.header.admissions, admissionsItems, t.header.admissionsMenu)}
                 {renderMobileDropdown("mobile-newsEvents", t.header.newsEvents, newsItems, t.header.newsEventsMenu)}
 
-                <button
+                <motion.button
+                  variants={mobileMenuItemVariants}
                   type="button"
                   onClick={() => handleMobileNavigate("/contact/contact-us")}
-                  className="block w-full text-start px-4 py-3 rounded-xl text-[15px] font-semibold"
-                  style={{ color: "var(--text-primary)" }}
+                  className="block w-full text-start px-4 py-3 rounded-xl text-[15px] font-semibold transition-all duration-200 hover:-translate-y-px"
+                  style={{ color: "var(--text-primary)", background: theme === "dark" ? "rgba(255,255,255,.035)" : "rgba(15,23,42,.035)" }}
                 >
                   {t.header.contact}
-                </button>
+                </motion.button>
 
-                <button
+                <motion.button
+                  variants={mobileMenuItemVariants}
                   type="button"
                   onClick={() => handleMobileNavigate("/career")}
                   className="block w-full text-start px-4 py-3 rounded-xl text-[15px] font-semibold"
                   style={{ color: "var(--text-primary)" }}
                 >
                   {getMenuLabel(t.header.aboutMenu, "careers")}
-                </button>
+                </motion.button>
 
-                <button
+                <motion.button
+                  variants={mobileMenuItemVariants}
                   type="button"
                   onClick={() => handleMobileNavigate("/admissions/online-application")}
                   className="flex w-full items-center justify-center whitespace-nowrap rounded-full px-4 py-3 text-sm font-semibold tracking-normal transition-all duration-200 shadow-sm"
@@ -680,9 +728,9 @@ export default function Header() {
                   }}
                 >
                   {language === "ar" ? "سجّل الآن" : "Register Now"}
-                </button>
-              </div>
-            </div>
+                </motion.button>
+              </motion.div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
