@@ -382,9 +382,26 @@ export default function Header() {
               </div>
             </Link>
 
+            <div className="hidden min-[2200px]:flex shrink-0">
+              <Link
+                to="/admissions/online-application"
+                className={`inline-flex items-center justify-center whitespace-nowrap rounded-full font-semibold tracking-normal transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-[1px] ${
+                  isScrolled ? "px-3.5 py-2 text-[13px]" : "px-4 py-2.5 text-sm"
+                }`}
+                style={{
+                  color: "#ffffff",
+                  background: "linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))",
+                  border: "1px solid rgba(255,255,255,.10)",
+                  minWidth: isScrolled ? 108 : 118,
+                }}
+              >
+                {language === "ar" ? "سجّل الآن" : "Register Now"}
+              </Link>
+            </div>
+
           </div>
 
-          <nav className="hidden min-[1800px]:flex items-center gap-1.5 xl:gap-4 min-w-0" ref={dropdownRef}>
+          <nav className="hidden min-[2200px]:flex items-center gap-1.5 xl:gap-4 min-w-0" ref={dropdownRef}>
             <button
               type="button"
               className={`${desktopNavClass} rounded-full px-2.5 xl:px-3 shrink-0`}
@@ -546,7 +563,19 @@ export default function Header() {
             </div>
           </nav>
 
-          <div className="min-[1800px]:hidden flex items-center gap-1.5 shrink-0">
+          <div className="min-[2200px]:hidden flex items-center gap-1.5 shrink-0">
+            <Link
+              to="/admissions/online-application"
+              className="hidden lg:inline-flex items-center justify-center whitespace-nowrap rounded-full px-3.5 py-2.5 text-[13px] font-semibold tracking-normal transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-[1px]"
+              style={{
+                color: "#ffffff",
+                background: "linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))",
+                border: "1px solid rgba(255,255,255,.10)",
+                minWidth: 116,
+              }}
+            >
+              {language === "ar" ? "سجّل الآن" : "Register Now"}
+            </Link>
             <button
               onClick={toggleLanguage}
               className="flex items-center justify-center rounded-full transition-all duration-150 shadow-sm px-2.5 py-2.5 text-[11px] font-bold"
@@ -613,7 +642,7 @@ export default function Header() {
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
-            className="min-[1800px]:hidden px-4 pb-4"
+            className="min-[2200px]:hidden px-4 pb-4"
           >
             <div
               className="mt-3 rounded-[1.6rem] border shadow-2xl overflow-hidden"
