@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Loader2, Bot } from 'lucide-react';
+import { MessageCircle, X, Send, Loader2, GraduationCap } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useTheme } from '../contexts/ThemeContext';
 import ReactMarkdown from 'react-markdown';
 
 interface Message {
@@ -17,52 +18,75 @@ interface FAQItem {
 
 export default function Chatbot() {
   const { dir, language } = useLanguage();
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  const quickQuestions =
+    language === 'ar'
+      ? ['كيف أقدّم؟', 'ما هي الرسوم؟', 'أين الفروع؟', 'أرقام التواصل', 'الوظائف المتاحة']
+      : ['How do I apply?', 'What are the fees?', 'Where are the branches?', 'Contact numbers', 'Careers'];
+
   const schoolFaqs: FAQItem[] = [
     {
       keywords: ['admission', 'apply', 'application', 'register', 'registration', 'قبول', 'تقديم', 'التسجيل', 'سجل'],
       answerAr:
-        `يمكنك التقديم من خلال صفحة **التقديم الإلكتروني** الموجودة في الموقع.  
-ولو احتجت مساعدة إضافية يمكنك التواصل مع قسم القبول عبر البريد:  
-**admission@duniaalajial.edu.sa**`,
+        `يمكنك التقديم من خلال [صفحة التقديم الإلكتروني](/admissions/online-application).
+
+ولو احتجت مساعدة إضافية يمكنك التواصل مع قسم القبول عبر البريد:
+
+[‎admission@duniaalajial.edu.sa](mailto:admission@duniaalajial.edu.sa)`,
       answerEn:
-        `You can apply through the **Online Application** page on the website.  
-If you need additional help, please contact the admissions team at:  
-**admission@duniaalajial.edu.sa**`,
+        `You can apply through the [Online Application page](/admissions/online-application).
+
+If you need additional help, please contact the admissions team at:
+
+[‎admission@duniaalajial.edu.sa](mailto:admission@duniaalajial.edu.sa)`,
     },
     {
       keywords: ['fees', 'tuition', 'financial', 'finance', 'رسوم', 'الرسوم', 'مالي', 'النظام المالي'],
       answerAr:
-        `يمكنك الاطلاع على تفاصيل الرسوم من خلال صفحة **الرسوم** وصفحة **النظام المالي** داخل قسم القبول بالموقع.`,
+        `يمكنك الاطلاع على [صفحة الرسوم](/admissions/fees) و[النظام المالي](/admissions/financial-system) داخل قسم القبول.`,
       answerEn:
-        `You can find fee details on the **Fees** page and the **Financial System** page under the Admissions section.`,
+        `You can find fee details on the [Fees page](/admissions/fees) and the [Financial System page](/admissions/financial-system).`,
     },
     {
       keywords: ['location', 'address', 'map', 'branch', 'موقع', 'عنوان', 'الخريطة', 'الفرع', 'فروع'],
       answerAr:
-        `يمكنك العثور على مواقع فروع المدرسة من خلال صفحة **الموقع** في قسم **تواصل معنا**.`,
+        `لدينا فرعان في الخرج:
+
+- [فرع البنين – حي الخزامى](https://maps.app.goo.gl/YAygujNekXEKCMxZ7)
+- [فرع البنات – حي الحمراء](https://maps.app.goo.gl/MYKSZJp9cwWn2EMk8)`,
       answerEn:
-        `You can find the school branch locations on the **Location** page under **Contact Us**.`,
+        `We have two campuses in Al-Kharj:
+
+- [Boys Campus – Al Khuzama](https://www.google.com/maps?q=24.1276835,47.2727108)
+- [Girls Campus – Al Hamra](https://www.google.com/maps?q=24.1614634,47.3070865)`,
     },
     {
       keywords: ['phone', 'call', 'mobile', 'contact number', 'رقم', 'هاتف', 'تليفون', 'اتصال', 'اتصل'],
       answerAr:
-        `رقم التواصل مع المدرسة هو: **0560232669**`,
+        `يمكنك الاتصال بالمدرسة مباشرة على:
+
+[‎0560232669](tel:+966560232669)`,
       answerEn:
-        `The school contact number is: **0560232669**`,
+        `You can call the school directly on:
+
+[‎0560232669](tel:+966560232669)`,
     },
     {
       keywords: ['email', 'mail', 'بريد', 'ايميل', 'إيميل'],
       answerAr:
-        `يمكنك التواصل مع المدرسة عبر البريد الإلكتروني التالي:  
+        `يمكنك التواصل مع المدرسة عبر البريد الإلكتروني التالي:
+
 **admission@duniaalajial.edu.sa**`,
       answerEn:
-        `You can contact the school via email at:  
+        `You can contact the school via email at:
+
 **admission@duniaalajial.edu.sa**`,
     },
     {
@@ -75,10 +99,12 @@ If you need additional help, please contact the admissions team at:
     {
       keywords: ['career', 'job', 'work', 'وظيفة', 'وظائف', 'توظيف'],
       answerAr:
-        `للاطلاع على الوظائف أو التقديم، يمكنك زيارة صفحة **Career** أو التواصل عبر:  
+        `للاطلاع على الوظائف أو التقديم، يمكنك زيارة صفحة **Career** أو التواصل عبر:
+
 **hr@duniaalajial.edu.sa**`,
       answerEn:
-        `To view career opportunities or apply, please visit the **Career** page or contact:  
+        `To view career opportunities or apply, please visit the **Career** page or contact:
+
 **hr@duniaalajial.edu.sa**`,
     },
     {
@@ -89,7 +115,7 @@ If you need additional help, please contact the admissions team at:
         `You can follow the latest school updates in the **Latest News** section on the homepage, where recent school posts are displayed.`,
     },
     {
-      keywords: ['policy', 'policies', 'homework', 'bus', 'ai', 'aup', 'سياسة', 'سياسات', 'الواجبات', 'الحافلة', 'الذكاء الاصطناعي'],
+      keywords: ['policy', 'policies', 'homework', 'ai', 'aup', 'سياسة', 'سياسات', 'الواجبات', 'الذكاء الاصطناعي'],
       answerAr:
         `يمكنك الاطلاع على جميع السياسات المدرسية من خلال صفحة **School Policies** داخل قسم **About Us**.`,
       answerEn:
@@ -98,29 +124,48 @@ If you need additional help, please contact the admissions team at:
     {
       keywords: ['curriculum', 'american', 'kg', 'elementary', 'middle', 'high', 'منهج', 'امريكي', 'أمريكي', 'ابتدائي', 'متوسط', 'ثانوي', 'رياض'],
       answerAr:
-        `يمكنك التعرف على المراحل الدراسية والمحتوى الأكاديمي من خلال صفحات **الأكاديمية** في الموقع مثل:  
+        `يمكنك التعرف على المراحل الدراسية والمحتوى الأكاديمي من خلال صفحات **الأكاديمية** في الموقع مثل:
 - الطفولة المبكرة  
 - الابتدائية  
 - المتوسطة والثانوية`,
       answerEn:
-        `You can learn more about the academic stages through the **Academics** pages on the website, including:  
+        `You can learn more about the academic stages through the **Academics** pages on the website, including:
 - Early Childhood  
 - Elementary School  
 - Middle & High School`,
     },
+    {
+      keywords: ['bus', 'transport', 'transportation', 'uniform', 'زي', 'الزي', 'باص', 'حافلة', 'مواصلات'],
+      answerAr:
+        `للتأكد من توفر النقل المدرسي أو تفاصيل الزي للمستوى المطلوب، تواصل مباشرة مع المدرسة على:
+
+[‎0560232669](tel:+966560232669)`,
+      answerEn:
+        `For school transport availability or uniform details for a specific grade, please contact the school directly:
+
+[‎0560232669](tel:+966560232669)`,
+    },
   ];
 
-  const fallbackAnswerAr = `أعتذر، لم أتمكن من فهم سؤالك بشكل دقيق.  
-يمكنك تصفح صفحات الموقع أو التواصل مباشرة مع المدرسة عبر:  
-**0560232669**  
-أو البريد الإلكتروني:  
-**admission@duniaalajial.edu.sa**`;
+  const fallbackAnswerAr = `أعتذر، لم أتمكن من فهم سؤالك بشكل دقيق.
 
-  const fallbackAnswerEn = `Sorry, I could not fully understand your question.  
-Please browse the website pages or contact the school directly via:  
-**0560232669**  
-or email:  
-**admission@duniaalajial.edu.sa**`;
+يمكنك تصفح صفحات الموقع أو التواصل مباشرة مع المدرسة عبر:
+
+[‎0560232669](tel:+966560232669)
+
+أو البريد الإلكتروني:
+
+[‎admission@duniaalajial.edu.sa](mailto:admission@duniaalajial.edu.sa)`;
+
+  const fallbackAnswerEn = `Sorry, I could not fully understand your question.
+
+Please browse the website pages or contact the school directly via:
+
+[‎0560232669](tel:+966560232669)
+
+or email:
+
+[‎admission@duniaalajial.edu.sa](mailto:admission@duniaalajial.edu.sa)`;
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -144,12 +189,25 @@ or email:
     }
   }, [isOpen, messages.length, language]);
 
-  const getBotReply = (message: string) => {
-    const normalizedMessage = message.toLowerCase().trim();
+  const normalizeText = (text: string) =>
+    text
+      .toLowerCase()
+      .trim()
+      .replace(/[أإآ]/g, 'ا')
+      .replace(/ى/g, 'ي')
+      .replace(/ة/g, 'ه')
+      .replace(/[ًٌٍَُِّْ]/g, '');
 
-    const matchedFaq = schoolFaqs.find((faq) =>
-      faq.keywords.some((keyword) => normalizedMessage.includes(keyword.toLowerCase()))
-    );
+  const getBotReply = (message: string) => {
+    const normalizedMessage = normalizeText(message);
+
+    const matchedFaq = schoolFaqs
+      .map((faq) => ({
+        faq,
+        score: faq.keywords.filter((keyword) => normalizedMessage.includes(normalizeText(keyword))).length,
+      }))
+      .filter(({ score }) => score > 0)
+      .sort((first, second) => second.score - first.score)[0]?.faq;
 
     if (matchedFaq) {
       return language === 'ar' ? matchedFaq.answerAr : matchedFaq.answerEn;
@@ -158,12 +216,9 @@ or email:
     return language === 'ar' ? fallbackAnswerAr : fallbackAnswerEn;
   };
 
-  const handleSendMessage = async (e?: React.FormEvent) => {
-    e?.preventDefault();
-    if (!inputText.trim() || isLoading) return;
+  const sendMessage = (userMessage: string) => {
+    if (!userMessage.trim() || isLoading) return;
 
-    const userMessage = inputText.trim();
-    setInputText('');
     setMessages((prev) => [...prev, { role: 'user', text: userMessage }]);
     setIsLoading(true);
 
@@ -172,6 +227,14 @@ or email:
       setMessages((prev) => [...prev, { role: 'model', text: reply }]);
       setIsLoading(false);
     }, 500);
+  };
+
+  const handleSendMessage = (e?: React.FormEvent) => {
+    e?.preventDefault();
+    const userMessage = inputText.trim();
+    if (!userMessage || isLoading) return;
+    setInputText('');
+    sendMessage(userMessage);
   };
 
   return (
@@ -183,13 +246,17 @@ or email:
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-24 right-6 w-[90vw] md:w-96 h-[600px] max-h-[80vh] bg-slate-50 dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-300 dark:border-slate-800 z-50 flex flex-col overflow-hidden font-sans"
-            style={{ direction: dir }}
+            className="fixed bottom-24 right-6 z-[100] flex h-[600px] max-h-[80vh] w-[90vw] flex-col overflow-hidden rounded-2xl border font-sans shadow-2xl md:w-96"
+            style={{
+              direction: dir,
+              backgroundColor: isDark ? '#0f172a' : '#ffffff',
+              borderColor: isDark ? '#334155' : '#d8dee9',
+            }}
           >
-            <div className="bg-purple-600 p-4 flex items-center justify-between text-white shrink-0">
+            <div className="flex shrink-0 items-center justify-between bg-indigo-700 p-4 text-white">
               <div className="flex items-center gap-2">
                 <div className="bg-white/20 p-1.5 rounded-full">
-                  <Bot className="w-5 h-5" />
+                  <GraduationCap className="w-5 h-5" />
                 </div>
                 <h3 className="font-bold">
                   {language === 'ar' ? 'مساعد المدرسة' : 'School Assistant'}
@@ -203,21 +270,36 @@ or email:
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-white dark:bg-slate-950/50">
+            <div
+              className="flex-1 overflow-y-auto space-y-4 p-4"
+              style={{ backgroundColor: isDark ? '#020617' : '#f8fafc' }}
+            >
               {messages.map((msg, idx) => (
                 <div
                   key={idx}
                   className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`max-w-[85%] p-3 rounded-2xl ${
+                    className={`max-w-[85%] rounded-2xl p-3 ${
                       msg.role === 'user'
-                        ? 'bg-purple-600 text-white rounded-tr-none rtl:rounded-tl-none rtl:rounded-tr-2xl'
-                        : 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 shadow-sm border border-slate-200 dark:border-slate-700 rounded-tl-none rtl:rounded-tr-none rtl:rounded-tl-2xl'
+                        ? 'bg-indigo-700 text-white rounded-tr-none rtl:rounded-tl-none rtl:rounded-tr-2xl'
+                        : 'rounded-tl-none border shadow-sm rtl:rounded-tl-2xl rtl:rounded-tr-none'
                     }`}
+                    style={
+                      msg.role === 'model'
+                        ? {
+                            backgroundColor: isDark ? '#172033' : '#ffffff',
+                            color: isDark ? '#f8fafc' : '#0f172a',
+                            borderColor: isDark ? '#334155' : '#dbe3ee',
+                          }
+                        : undefined
+                    }
                   >
                     {msg.role === 'model' ? (
-                      <div className="prose prose-sm max-w-none dark:prose-invert prose-p:text-slate-900 dark:prose-p:text-slate-100 prose-strong:text-slate-900 dark:prose-strong:text-slate-100 prose-li:text-slate-900 dark:prose-li:text-slate-100">
+                      <div
+                        className="text-sm leading-6 [&_a]:font-semibold [&_a]:underline [&_li]:my-0 [&_ol]:my-2 [&_p]:m-0 [&_p+p]:mt-2 [&_ul]:my-2"
+                        style={{ color: isDark ? '#f8fafc' : '#0f172a' }}
+                      >
                         <ReactMarkdown>{msg.text}</ReactMarkdown>
                       </div>
                     ) : (
@@ -227,11 +309,41 @@ or email:
                 </div>
               ))}
 
+              {!isLoading && (
+                <div className="space-y-2 pt-1">
+                  <p className="text-xs font-semibold" style={{ color: isDark ? '#cbd5e1' : '#475569' }}>
+                    {language === 'ar' ? 'اختر موضوعًا سريعًا:' : 'Choose a quick topic:'}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {quickQuestions.map((question) => (
+                      <button
+                        key={question}
+                        type="button"
+                        onClick={() => sendMessage(question)}
+                        className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors ${
+                          isDark
+                            ? 'border-purple-400/40 bg-purple-500/15 text-violet-100 hover:bg-purple-500/25'
+                            : 'border-purple-200 bg-purple-50 text-purple-700 hover:bg-purple-100'
+                        }`}
+                      >
+                        {question}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="bg-slate-100 dark:bg-slate-800 p-3 rounded-2xl rounded-tl-none rtl:rounded-tr-none rtl:rounded-tl-2xl shadow-sm border border-slate-200 dark:border-slate-700 flex items-center gap-2">
-                    <Loader2 className="w-4 h-4 animate-spin text-purple-600" />
-                    <span className="text-xs text-slate-600 dark:text-slate-400">
+                  <div
+                    className="flex items-center gap-2 rounded-2xl rounded-tl-none border p-3 shadow-sm rtl:rounded-tl-2xl rtl:rounded-tr-none"
+                    style={{
+                      backgroundColor: isDark ? '#172033' : '#ffffff',
+                      borderColor: isDark ? '#334155' : '#dbe3ee',
+                    }}
+                  >
+                    <Loader2 className="w-4 h-4 animate-spin text-indigo-600" />
+                    <span className="text-xs" style={{ color: isDark ? '#cbd5e1' : '#475569' }}>
                       {language === 'ar' ? 'جارٍ التفكير...' : 'Thinking...'}
                     </span>
                   </div>
@@ -241,20 +353,30 @@ or email:
               <div ref={messagesEndRef} />
             </div>
 
-            <div className="p-4 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 shrink-0">
+            <div
+              className="shrink-0 border-t p-4"
+              style={{
+                backgroundColor: isDark ? '#0f172a' : '#f8fafc',
+                borderColor: isDark ? '#334155' : '#dbe3ee',
+              }}
+            >
               <form onSubmit={handleSendMessage} className="flex gap-2">
                 <input
                   type="text"
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
                   placeholder={language === 'ar' ? 'اكتب سؤالك هنا...' : 'Ask your question here...'}
-                  className="flex-1 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-full px-4 py-2 border border-slate-300 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  className={`flex-1 rounded-full border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
+                    isDark
+                      ? 'border-slate-700 bg-slate-800 text-white placeholder:text-slate-400'
+                      : 'border-slate-300 bg-white text-slate-900 placeholder:text-slate-500'
+                  }`}
                   disabled={isLoading}
                 />
                 <button
                   type="submit"
                   disabled={!inputText.trim() || isLoading}
-                  className="bg-purple-600 text-white p-2 rounded-full hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="rounded-full bg-indigo-700 p-2 text-white transition-colors hover:bg-indigo-800 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {dir === 'ltr' ? (
                     <Send className="w-5 h-5" />
@@ -272,7 +394,7 @@ or email:
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 w-14 h-14 bg-purple-600 text-white rounded-full shadow-lg hover:shadow-purple-500/40 flex items-center justify-center z-50 transition-shadow"
+        className="fixed bottom-6 right-6 z-[100] flex h-14 w-14 items-center justify-center rounded-full border border-white/25 bg-indigo-700 text-white shadow-lg shadow-indigo-950/30 transition-all hover:bg-indigo-800 hover:shadow-xl"
       >
         {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-7 h-7" />}
       </motion.button>
