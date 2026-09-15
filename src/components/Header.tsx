@@ -340,21 +340,21 @@ export default function Header() {
     >
       <div className="container-page">
         <div className="flex items-center justify-between gap-2 md:gap-4">
-          <div className="flex flex-1 xl:flex-none xl:ml-32 items-center gap-2.5 xl:gap-3 min-w-0">
+          <div className="flex flex-1 xl:flex-none items-center gap-2.5 xl:gap-3 min-w-0">
             <Link to="/" className="flex items-center gap-2.5 md:gap-3 shrink-0 min-w-0 max-w-full xl:max-w-none">
               <img
                 src="/images/logo.webp"
                 alt={t.header.schoolName}
                 className={`w-auto shrink-0 object-contain transition-all duration-500 ${
-                  isScrolled ? "h-10 lg:h-[3.1rem] xl:h-12" : "h-12 lg:h-[60px] xl:h-14"
+                  isScrolled ? "h-12 lg:h-14 xl:h-16" : "h-14 lg:h-16 xl:h-20"
                 }`}
               />
               <div className="min-w-0">
                 <div
                   className={`font-serif font-bold leading-none tracking-tight transition-all duration-500 ${
                     isScrolled
-                  ? "text-sm lg:text-[1.2rem] xl:text-[1.35rem]"
-                      : "text-base sm:text-lg lg:text-[1.7rem] xl:text-[1.85rem]"
+                  ? "text-sm lg:text-[1.2rem] xl:text-[1.5rem]"
+                      : "text-base sm:text-lg lg:text-[1.7rem] xl:text-[2rem]"
                   }`}
                   style={{
                     color: isScrolled ? "var(--text-primary)" : theme === "dark" ? "#ffffff" : "#0f172a",
@@ -384,7 +384,7 @@ export default function Header() {
 
           </div>
 
-          <nav className="hidden xl:flex flex-1 justify-end items-center gap-0.5 min-[1600px]:gap-1.5 min-w-0" ref={dropdownRef}>
+          <nav className="hidden" ref={dropdownRef}>
             <button
               type="button"
               className={`${desktopNavClass} rounded-full px-2.5 xl:px-3 shrink-0`}
@@ -546,7 +546,7 @@ export default function Header() {
             </div>
           </nav>
 
-          <div className="xl:hidden flex items-center gap-1.5 shrink-0">
+          <div className="flex items-center gap-1.5 shrink-0">
             <Link
               to="/admissions/online-application"
               className="hidden lg:inline-flex items-center justify-center whitespace-nowrap rounded-full px-3.5 py-2.5 text-[13px] font-semibold tracking-normal transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-[1px]"
@@ -619,28 +619,13 @@ export default function Header() {
         </div>
       </div>
 
-      <Link
-        to="/admissions/online-application"
-        className={`hidden xl:inline-flex absolute left-6 top-1/2 -translate-y-1/2 items-center justify-center whitespace-nowrap rounded-full font-semibold tracking-normal transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-[calc(50%+1px)] ${
-          isScrolled ? "px-2.5 py-2 text-[12px]" : "px-3 py-2.5 text-[13px]"
-        }`}
-        style={{
-          color: "#ffffff",
-          background: "linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))",
-          border: "1px solid rgba(255,255,255,.10)",
-          minWidth: isScrolled ? 98 : 106,
-        }}
-      >
-        {language === "ar" ? "سجّل الآن" : "Register Now"}
-      </Link>
-
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
-            className="xl:hidden px-4 pb-4"
+            className="px-4 pb-4"
           >
             <div
               className="mt-3 rounded-[1.6rem] border shadow-2xl overflow-hidden"
