@@ -162,6 +162,18 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
+    function handleEscape(event: KeyboardEvent) {
+      if (event.key !== "Escape") return;
+      setIsMenuOpen(false);
+      setActiveMobileDropdown(null);
+      setActiveDesktopDropdown(null);
+    }
+
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, []);
+
+  useEffect(() => {
     closeMobileMenu();
     setActiveDesktopDropdown(null);
   }, [location.pathname]);
@@ -302,6 +314,8 @@ export default function Header() {
           color: "var(--text-primary)",
           background: theme === "dark" ? "rgba(255,255,255,.035)" : "rgba(15,23,42,.035)",
         }}
+        aria-expanded={activeMobileDropdown === dropdownKey}
+        aria-controls={`submenu-${dropdownKey}`}
       >
         <span className="flex items-center gap-3">
           <span>{label}</span>
@@ -320,6 +334,7 @@ export default function Header() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.22 }}
+            id={`submenu-${dropdownKey}`}
             className="overflow-hidden"
           >
             <div className="pb-2 pt-1 px-2 space-y-1">
@@ -634,6 +649,7 @@ export default function Header() {
             </motion.button>
 
             <motion.button
+              type="button"
               onClick={() => setIsMenuOpen((prev) => !prev)}
               animate={{
                 boxShadow: [
@@ -656,6 +672,8 @@ export default function Header() {
                 }`,
               }}
               aria-label="Menu"
+              aria-expanded={isMenuOpen}
+              aria-controls="site-navigation-menu"
             >
               <span className="flex">
                 {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -669,6 +687,9 @@ export default function Header() {
         {isMenuOpen && (
           <motion.div
             ref={dropdownRef}
+            id="site-navigation-menu"
+            role="navigation"
+            aria-label={language === "ar" ? "قائمة الموقع" : "Site navigation"}
             className={`absolute top-full z-50 mt-2 w-[min(22rem,calc(100vw-2rem))] ${
               dir === "rtl"
                 ? "left-4 sm:left-6 lg:left-8 xl:left-[calc((100%-80rem)/2+2rem)]"
