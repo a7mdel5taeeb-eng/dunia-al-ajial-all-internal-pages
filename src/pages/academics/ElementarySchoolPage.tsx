@@ -308,10 +308,14 @@ export default function ElementarySchoolPage() {
                 boxShadow: "0 24px 60px -30px rgba(15,23,42,.22)",
               }}
             >
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/25" />
-              <div className="absolute inset-0 bg-violet-900/18" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#071a2d]/95 via-[#123451]/58 to-[#0a1e38]/22" />
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/18 via-transparent to-violet-400/18" />
+              <div aria-hidden="true" className="absolute -top-10 right-12 h-44 w-44 rounded-full border border-cyan-100/20 bg-cyan-300/10" />
+              <div aria-hidden="true" className="absolute left-12 top-14 h-24 w-24 rotate-45 rounded-2xl border border-white/15 bg-violet-300/10" />
+              <div aria-hidden="true" className="absolute bottom-8 right-1/4 h-px w-44 bg-gradient-to-r from-transparent via-cyan-100/50 to-transparent" />
 
-              <div className="relative z-10 flex min-h-[320px] md:min-h-[430px] flex-col items-center justify-end px-6 py-8 md:px-10 md:py-12 text-center">
+              <div className="relative z-10 flex min-h-[320px] md:min-h-[430px] flex-col items-center justify-end px-5 py-5 md:px-10 md:py-10 text-center">
+                <div className="w-full max-w-4xl rounded-[1.6rem] border border-white/15 bg-slate-950/25 px-5 py-6 backdrop-blur-md md:rounded-[1.9rem] md:px-10 md:py-9">
                 <div className="inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-semibold text-white bg-white/10 border-white/20 backdrop-blur-sm">
                   {content.eyebrow}
                 </div>
@@ -323,6 +327,7 @@ export default function ElementarySchoolPage() {
                 <p className="mt-5 max-w-4xl mx-auto text-base md:text-lg leading-8 md:leading-9 text-white/90">
                   {content.heroDescription}
                 </p>
+                </div>
               </div>
             </div>
           </motion.div>

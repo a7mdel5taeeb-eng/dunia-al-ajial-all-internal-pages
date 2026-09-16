@@ -318,13 +318,17 @@ export default function EarlyChildhoodPage() {
               boxShadow: "0 24px 60px -30px rgba(15,23,42,.22)",
             }}
           >
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/25" />
-            <div className="absolute inset-0 bg-violet-900/18" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#12172f]/95 via-[#2a1d52]/58 to-[#0b1730]/22" />
+              <div className="absolute inset-0 bg-gradient-to-br from-fuchsia-500/20 via-transparent to-amber-300/15" />
+              <div aria-hidden="true" className="absolute -top-16 -right-14 h-48 w-48 rounded-full border border-white/20 bg-amber-300/10 blur-[1px]" />
+              <div aria-hidden="true" className="absolute top-12 left-10 h-20 w-20 rotate-12 rounded-[1.5rem] border border-fuchsia-200/25 bg-fuchsia-300/10" />
+              <div aria-hidden="true" className="absolute bottom-10 right-12 h-28 w-28 rounded-full border border-white/15 bg-white/5" />
 
-            <div className="relative z-10 flex min-h-[320px] md:min-h-[430px] flex-col items-center justify-end px-6 py-8 md:px-10 md:py-12 text-center">
-              <div className="inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-semibold text-white bg-white/10 border-white/20 backdrop-blur-sm">
-                {eyebrow}
-              </div>
+              <div className="relative z-10 flex min-h-[320px] md:min-h-[430px] flex-col items-center justify-end px-5 py-5 md:px-10 md:py-10 text-center">
+                <div className="w-full max-w-4xl rounded-[1.6rem] border border-white/15 bg-slate-950/25 px-5 py-6 backdrop-blur-md md:rounded-[1.9rem] md:px-10 md:py-9">
+                <div className="inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-semibold text-white bg-white/10 border-white/20 backdrop-blur-sm">
+                  {eyebrow}
+                </div>
 
               <h1 className="mt-6 text-4xl md:text-6xl font-bold font-serif tracking-tight text-white">
                 {mainTitle}
@@ -334,10 +338,11 @@ export default function EarlyChildhoodPage() {
                 {heroTitle}
               </p>
 
-              <p className="mt-5 max-w-4xl mx-auto text-base md:text-lg leading-8 md:leading-9 text-white/90">
-                {heroText}
-              </p>
-            </div>
+                <p className="mt-5 max-w-4xl mx-auto text-base md:text-lg leading-8 md:leading-9 text-white/90">
+                  {heroText}
+                </p>
+                </div>
+              </div>
           </div>
         </motion.div>
 
