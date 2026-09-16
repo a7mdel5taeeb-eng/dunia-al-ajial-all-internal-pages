@@ -153,6 +153,7 @@ export default function Header() {
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setActiveDesktopDropdown(null);
+        setIsMenuOpen(false);
       }
     }
 
