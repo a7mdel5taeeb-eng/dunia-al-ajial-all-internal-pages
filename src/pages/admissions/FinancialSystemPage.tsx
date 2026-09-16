@@ -174,11 +174,15 @@ export default function FinancialSystemPage() {
       <section className="relative overflow-hidden pt-28 md:pt-36 pb-14 md:pb-20">
         <div className="absolute inset-0">
           <div
+            className="absolute inset-0 bg-cover bg-center opacity-90"
+            style={{ backgroundImage: "url('/images/admissions-documents-hero-v2.png')" }}
+          />
+          <div
             className="absolute inset-0"
             style={{
               background: isDark
-                ? "linear-gradient(180deg, #020617 0%, #0f172a 52%, #111827 100%)"
-                : "linear-gradient(180deg, #f8fafc 0%, #eef2ff 48%, #ffffff 100%)",
+                ? "linear-gradient(90deg, rgba(2,6,23,.92) 0%, rgba(15,23,42,.74) 54%, rgba(17,24,39,.72) 100%)"
+                : "linear-gradient(90deg, rgba(248,250,252,.92) 0%, rgba(238,242,255,.8) 55%, rgba(255,255,255,.6) 100%)",
             }}
           />
           <div className="absolute top-[-80px] right-[8%] h-72 w-72 rounded-full bg-violet-500/15 blur-[110px] pointer-events-none" />

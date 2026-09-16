@@ -26,16 +26,22 @@ export default function BackToTop() {
           exit={{ opacity: 0, scale: 0.84, y: 12 }}
           transition={{ duration: 0.18, ease: "easeOut" }}
           onClick={returnToTop}
-          className="fixed bottom-5 left-5 z-40 inline-flex h-12 w-12 items-center justify-center rounded-full border text-white shadow-lg transition-transform duration-200 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+          className="fixed bottom-5 left-5 z-40 inline-flex h-16 w-10 flex-col items-center justify-center gap-1.5 rounded-full border text-white shadow-lg transition-all duration-200 hover:-translate-y-1 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
           style={{
-            background: "linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))",
-            borderColor: "rgba(255,255,255,.18)",
-            boxShadow: "0 14px 30px rgba(91,33,182,.34)",
+            background: "linear-gradient(160deg, rgba(30,41,78,.94), rgba(68,42,129,.95))",
+            borderColor: "rgba(255,255,255,.28)",
+            boxShadow: "0 16px 32px rgba(15,23,42,.28)",
           }}
           aria-label={language === "ar" ? "العودة إلى أعلى الصفحة" : "Back to top"}
           title={language === "ar" ? "العودة إلى الأعلى" : "Back to top"}
         >
-          <ArrowUp className="h-5 w-5" aria-hidden="true" />
+          <ArrowUp className="h-4 w-4" aria-hidden="true" />
+          <motion.span
+            animate={{ y: [0, -7, 0] }}
+            transition={{ duration: 1.45, repeat: Infinity, ease: "easeInOut" }}
+            className="h-1.5 w-1.5 rounded-full bg-violet-200"
+            aria-hidden="true"
+          />
         </motion.button>
       )}
     </AnimatePresence>

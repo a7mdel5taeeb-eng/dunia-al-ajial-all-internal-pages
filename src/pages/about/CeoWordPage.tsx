@@ -76,6 +76,11 @@ export default function CeoWordPage() {
             boxShadow: "0 24px 60px -34px rgba(15,23,42,.18)",
           }}
         >
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: "url('/images/leadership-hero-v2.png')" }}
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,10,28,.91),rgba(7,15,38,.56),rgba(7,15,38,.2))]" />
           <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(circle_at_top_right,rgba(124,58,237,.16),transparent_34%)]" />
           <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-violet-500/10 blur-3xl pointer-events-none" />
 
@@ -86,9 +91,9 @@ export default function CeoWordPage() {
               <div
                 className="inline-flex items-center gap-3 rounded-full px-4 py-2 text-[11px] md:text-xs font-bold tracking-[0.18em] border"
                 style={{
-                  color: "var(--accent-primary)",
-                  background: "color-mix(in srgb, var(--accent-primary) 8%, transparent)",
-                  borderColor: "color-mix(in srgb, var(--accent-primary) 18%, transparent)",
+                  color: "#ede9fe",
+                  background: "rgba(15,23,42,.36)",
+                  borderColor: "rgba(255,255,255,.2)",
                 }}
               >
                 <span className="inline-block h-2 w-2 rounded-full bg-violet-500" />
@@ -98,14 +103,14 @@ export default function CeoWordPage() {
 
             <h1
               className="mt-6 text-[2rem] sm:text-[2.5rem] md:text-[3.2rem] lg:text-[3.8rem] font-serif font-bold leading-[1.08] tracking-tight"
-              style={{ color: "var(--text-primary)" }}
+              style={{ color: "#ffffff" }}
             >
               {pageTitle}
             </h1>
 
             <p
               className="mt-6 text-base md:text-lg lg:text-[1.08rem] leading-8 md:leading-9 max-w-3xl"
-              style={{ color: "var(--text-secondary)" }}
+              style={{ color: "rgba(255,255,255,.84)" }}
             >
               {intro}
             </p>

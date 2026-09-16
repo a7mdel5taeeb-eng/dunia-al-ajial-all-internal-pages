@@ -234,6 +234,7 @@ export default function CodeOfConductPage() {
         eyebrow={content.eyebrow}
         title={content.heroTitle}
         description={content.heroDescription}
+        image="/images/admissions-documents-hero-v2.png"
       />
 
       <section className="container-page mt-10 md:mt-14">

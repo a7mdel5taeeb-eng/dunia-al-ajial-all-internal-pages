@@ -19,6 +19,7 @@ export default function CalendarPage() {
             ? "اطّلع على مواعيد الدراسة والإجازات والاختبارات والفعاليات المهمة للعام الدراسي."
             : "View term dates, holidays, assessments, and important school events for the academic year."
         }
+        image="/images/calendar-hero-v2.png"
       />
 
       <motion.section

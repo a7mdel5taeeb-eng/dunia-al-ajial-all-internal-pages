@@ -64,29 +64,34 @@ export default function RequirementsPage() {
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="max-w-5xl mx-auto text-center"
+          className="relative max-w-6xl mx-auto overflow-hidden rounded-[2rem] border p-7 text-center md:p-12"
+          style={{
+            background: "linear-gradient(90deg, rgba(3,10,28,.9), rgba(7,15,38,.54)), url('/images/admissions-documents-hero-v2.png') center / cover",
+            borderColor: "rgba(167,139,250,.28)",
+            boxShadow: "0 24px 55px -34px rgba(15,23,42,.55)",
+          }}
         >
-          <div className="inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-semibold bg-white/70 dark:bg-white/5 border-[var(--border-color)] text-[var(--accent-primary)]">
+          <div className="relative inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-semibold border-white/20 bg-slate-950/30 text-violet-200 backdrop-blur-md">
             {eyebrow}
           </div>
 
           <h1
             className="mt-6 text-4xl md:text-6xl font-bold font-serif tracking-tight"
-            style={{ color: "var(--text-primary)" }}
+            style={{ color: "#fff" }}
           >
             {mainTitle}
           </h1>
 
           <p
             className="mt-5 text-xl md:text-2xl font-semibold"
-            style={{ color: "var(--text-primary)" }}
+            style={{ color: "rgba(255,255,255,.96)" }}
           >
             {heroTitle}
           </p>
 
           <p
             className="mt-5 max-w-3xl mx-auto text-base md:text-lg leading-8 md:leading-9"
-            style={{ color: "var(--text-secondary)" }}
+            style={{ color: "rgba(255,255,255,.82)" }}
           >
             {heroText}
           </p>

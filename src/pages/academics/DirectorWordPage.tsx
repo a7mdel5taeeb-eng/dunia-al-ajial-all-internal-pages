@@ -121,6 +121,7 @@ Al-Kharj, Saudi Arabia`,
         eyebrow={text.eyebrow}
         title={text.heroTitle}
         description={text.heroDescription}
+        image="/images/leadership-hero-v2.png"
       />
 
       <section className="container-page mt-10 md:mt-14">
