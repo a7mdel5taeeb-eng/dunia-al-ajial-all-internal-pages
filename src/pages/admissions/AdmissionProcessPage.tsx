@@ -131,10 +131,13 @@ export default function AdmissionProcessPage() {
               boxShadow: "0 24px 60px -30px rgba(15,23,42,.22)",
             }}
           >
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/60 to-black/30" />
-            <div className="absolute inset-0 bg-violet-900/18" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#190d2f]/95 via-[#3b195f]/62 to-[#1d133c]/24" />
+            <div className="absolute inset-0 bg-gradient-to-br from-fuchsia-400/20 via-transparent to-amber-200/12" />
+            <div aria-hidden="true" className="absolute -top-14 right-10 h-48 w-48 rounded-full border border-fuchsia-100/20 bg-fuchsia-300/10" />
+            <div aria-hidden="true" className="absolute left-12 top-12 h-24 w-24 rotate-45 rounded-2xl border border-white/15 bg-amber-200/10" />
 
-            <div className="relative z-10 flex min-h-[320px] md:min-h-[430px] flex-col items-center justify-end px-6 py-8 md:px-10 md:py-12 text-center">
+            <div className="relative z-10 flex min-h-[320px] md:min-h-[430px] flex-col items-center justify-end px-5 py-5 md:px-10 md:py-10 text-center">
+              <div className="w-full max-w-4xl rounded-[1.6rem] border border-white/15 bg-slate-950/25 px-5 py-6 backdrop-blur-md md:rounded-[1.9rem] md:px-10 md:py-9">
               <div className="inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-semibold text-white bg-white/10 border-white/20 backdrop-blur-sm">
                 {eyebrow}
               </div>
@@ -179,6 +182,7 @@ export default function AdmissionProcessPage() {
                 >
                   {isArabic ? "زيارة الموقع" : "Visit Website"}
                 </a>
+              </div>
               </div>
             </div>
           </div>

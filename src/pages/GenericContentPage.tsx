@@ -246,16 +246,21 @@ export default function GenericContentPage() {
                 boxShadow: "0 20px 50px -30px rgba(15,23,42,.22)",
               }}
             >
-<div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/50 to-black/30" />              <div className="absolute inset-0 bg-violet-900/15" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0a1328]/94 via-[#20224e]/58 to-[#101a37]/22" />
+              <div className="absolute inset-0 bg-gradient-to-br from-violet-400/18 via-transparent to-sky-300/12" />
+              <div aria-hidden="true" className="absolute -top-14 right-10 h-44 w-44 rounded-full border border-violet-100/20 bg-violet-300/10" />
+              <div aria-hidden="true" className="absolute left-10 top-10 h-20 w-20 rotate-45 rounded-2xl border border-white/15 bg-sky-200/10" />
 
-              <div className="relative z-10 flex min-h-[280px] md:min-h-[380px] flex-col items-center justify-end px-6 py-8 md:px-10 md:py-12">
-                <span className="badge mb-4">
-                  {isArabic ? content.badgeAr : content.badgeEn}
-                </span>
+              <div className="relative z-10 flex min-h-[280px] md:min-h-[380px] flex-col items-center justify-end px-5 py-5 md:px-10 md:py-9">
+                <div className="w-full max-w-3xl rounded-[1.5rem] border border-white/15 bg-slate-950/25 px-5 py-6 backdrop-blur-md md:rounded-[1.8rem] md:px-9 md:py-8">
+                  <span className="badge mb-4">
+                    {isArabic ? content.badgeAr : content.badgeEn}
+                  </span>
 
-                <h1 className="text-3xl md:text-5xl font-bold font-serif text-white leading-tight">
-                  {isArabic ? content.titleAr : content.titleEn}
-                </h1>
+                  <h1 className="text-3xl md:text-5xl font-bold font-serif text-white leading-tight">
+                    {isArabic ? content.titleAr : content.titleEn}
+                  </h1>
+                </div>
               </div>
             </div>
           )}

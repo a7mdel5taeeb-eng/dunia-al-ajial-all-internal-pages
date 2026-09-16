@@ -169,11 +169,14 @@ export default function GalleryPage() {
                   : "0 24px 60px -30px rgba(15,23,42,.18)",
               }}
             >
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/45 to-black/25" />
-              <div className="absolute inset-0 bg-violet-900/20" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#09142b]/95 via-[#182b52]/57 to-[#101b35]/20" />
+              <div className="absolute inset-0 bg-gradient-to-br from-sky-400/18 via-transparent to-violet-400/20" />
+              <div aria-hidden="true" className="absolute -top-16 right-12 h-48 w-48 rounded-full border border-sky-100/20 bg-sky-300/10" />
+              <div aria-hidden="true" className="absolute left-12 top-12 h-24 w-24 rotate-45 rounded-2xl border border-violet-100/20 bg-violet-300/10" />
 
-              <div className="relative z-10 flex min-h-[320px] md:min-h-[430px] flex-col items-center justify-end px-6 py-8 md:px-10 md:py-12 text-center">
-                <div
+              <div className="relative z-10 flex min-h-[320px] md:min-h-[430px] flex-col items-center justify-end px-5 py-5 md:px-10 md:py-10 text-center">
+                <div className="w-full max-w-4xl rounded-[1.6rem] border border-white/15 bg-slate-950/25 px-5 py-6 backdrop-blur-md md:rounded-[1.9rem] md:px-10 md:py-9">
+                  <div
                   className="inline-flex items-center gap-3 rounded-full px-4 py-2 md:px-5 md:py-2.5 text-[10px] md:text-[11px] font-bold tracking-[0.16em] md:tracking-[0.22em] backdrop-blur-md"
                   style={{
                     color: "#ffffff",
@@ -204,6 +207,7 @@ export default function GalleryPage() {
                     ? "استكشف صورًا وفيديوهات حقيقية من حياة المدرسة، والأنشطة، والفصول، والفعاليات التي تعكس بيئة تعليمية حديثة تنمّي المعرفة والثقة والطموح."
                     : "Explore real photos and videos from school life, activities, classrooms, and events that reflect a modern learning environment built for growth, confidence, and ambition."}
                 </p>
+                </div>
               </div>
             </div>
           </motion.div>
