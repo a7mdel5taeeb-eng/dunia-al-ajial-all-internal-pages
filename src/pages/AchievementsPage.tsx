@@ -10,7 +10,6 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { motion } from "motion/react";
-import { useMemo, useState } from "react";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useTheme } from "../contexts/ThemeContext";
 
@@ -126,47 +125,26 @@ function AnimatedHero({
   title: string;
   text: string;
 }) {
-  const heroImages = useMemo(
-    () => [
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=1600&q=80",
-    ],
-    []
-  );
-
-  const [imageIndex, setImageIndex] = useState(0);
-  const [hideImage, setHideImage] = useState(false);
-
-  const currentImage = heroImages[imageIndex];
+  const currentImage = "/images/sports1.jpg";
 
   return (
     <section className="container-page mb-10">
       <div className="relative overflow-hidden rounded-[2rem] border border-[var(--border-color)] min-h-[360px] md:min-h-[430px] bg-[linear-gradient(135deg,#0f172a,#4c1d95,#0f172a)]">
-        {!hideImage && (
-          <img
-            src={currentImage}
-            alt={title}
-            className="absolute inset-0 h-full w-full object-cover"
-            loading="eager"
-            referrerPolicy="no-referrer"
-            onError={() => {
-              if (imageIndex < heroImages.length - 1) {
-                setImageIndex((prev) => prev + 1);
-              } else {
-                setHideImage(true);
-              }
-            }}
-          />
-        )}
+        <img
+          src={currentImage}
+          alt={title}
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="eager"
+        />
 
-        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,23,42,0.84),rgba(91,33,182,0.58),rgba(15,23,42,0.78))]" />
-        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(5,15,33,.92),rgba(34,38,94,.61),rgba(65,25,103,.72))]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(250,204,21,.18),transparent_25%),radial-gradient(circle_at_bottom_right,rgba(139,92,246,.24),transparent_28%)]" />
 
-        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.08),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.06),transparent_22%)]" />
+        <div aria-hidden="true" className="absolute -top-14 right-10 h-48 w-48 rounded-full border border-amber-100/20 bg-amber-300/10" />
+        <div aria-hidden="true" className="absolute bottom-10 left-12 h-24 w-24 rotate-45 rounded-2xl border border-violet-100/20 bg-violet-300/10" />
 
-        <div className="relative z-10 flex min-h-[360px] md:min-h-[430px] items-center px-6 py-10 md:px-12">
-          <div className="max-w-3xl">
+        <div className="relative z-10 flex min-h-[360px] md:min-h-[430px] items-center px-5 py-6 md:px-12 md:py-10">
+          <div className="max-w-3xl rounded-[1.75rem] border border-white/15 bg-slate-950/25 p-6 backdrop-blur-md md:p-9">
             <motion.div
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}

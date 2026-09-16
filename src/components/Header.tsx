@@ -358,7 +358,7 @@ export default function Header() {
 
   return (
     <motion.header
-      className={`fixed top-0 left-0 right-0 z-50 relative transition-all duration-500 ease-out ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
         isScrolled ? "py-2.5 md:py-3 shadow-premium" : "py-4 md:py-5"
       }`}
       style={{

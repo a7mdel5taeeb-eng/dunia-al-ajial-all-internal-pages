@@ -32,8 +32,8 @@ const activitiesData = {
     "Dynamic programs that inspire creativity, teamwork, confidence, and personal growth.",
   heroTextAr:
     "برامج وأنشطة حيوية تعزز الإبداع والعمل الجماعي والثقة بالنفس وتنمي شخصية الطالب.",
-  heroImage:
-    "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1600&q=80",
+  // We intentionally use a designed hero here until approved, authentic activity photos are available.
+  heroImage: "",
 
   introEn:
     "At Dunia Al-Ajial International School, student life extends far beyond the classroom. Our activities are designed to inspire creativity, teamwork, confidence, and personal growth in a vibrant and supportive environment.",
@@ -144,18 +144,21 @@ function AnimatedHero({
   return (
     <section className="container-page mb-10">
       <div className="relative overflow-hidden rounded-[2rem] border border-[var(--border-color)] min-h-[360px] md:min-h-[430px]">
-        <img
-          src={image}
-          alt={title}
-          className="absolute inset-0 h-full w-full object-cover"
-        />
+        {image && (
+          <img
+            src={image}
+            alt={title}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        )}
 
-        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,23,42,0.80),rgba(76,29,149,0.58),rgba(15,23,42,0.72))]" />
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,#0b1730,#253b75_54%,#3d1c68)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_14%_18%,rgba(56,189,248,.26),transparent_24%),radial-gradient(circle_at_84%_76%,rgba(244,114,182,.22),transparent_26%)]" />
+        <div aria-hidden="true" className="absolute -top-16 right-14 h-56 w-56 rounded-full border border-sky-100/20 bg-sky-300/10" />
+        <div aria-hidden="true" className="absolute bottom-12 left-12 h-28 w-28 rotate-45 rounded-[1.8rem] border border-fuchsia-100/20 bg-fuchsia-300/10" />
 
-        <div className="absolute inset-0 bg-black/20" />
-
-        <div className="relative z-10 flex min-h-[360px] md:min-h-[430px] items-center px-6 py-10 md:px-12">
-          <div className="max-w-3xl">
+        <div className="relative z-10 flex min-h-[360px] md:min-h-[430px] items-center px-5 py-6 md:px-12 md:py-10">
+          <div className="max-w-3xl rounded-[1.75rem] border border-white/15 bg-slate-950/25 p-6 backdrop-blur-md md:p-9">
             <motion.div
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}

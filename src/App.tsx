@@ -9,6 +9,7 @@ import Hero from "./components/Hero";
 import Footer from "./components/Footer";
 import IntroOverlay from "./components/IntroOverlay";
 import ScrollToTop from "./components/ScrollToTop";
+import BackToTop from "./components/BackToTop";
 import SeoMeta from "./components/SeoMeta";
 import CookieConsent from "./components/CookieConsent";
 
@@ -85,6 +86,7 @@ function SiteLayout() {
       <Header />
       <Outlet />
       <Footer />
+      <BackToTop />
       {loadChatbot && (
         <Suspense fallback={null}>
           <Chatbot />
