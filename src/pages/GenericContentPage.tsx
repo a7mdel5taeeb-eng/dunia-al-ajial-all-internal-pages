@@ -203,7 +203,14 @@ export default function GenericContentPage() {
   const content = genericPages[key];
   const isArabic = language === "ar";
   const isPoliciesPage = key === "about/school-policies";
-  const heroImage = content?.heroImage;
+  const categoryHeroImages: Record<string, string> = {
+    about: "/images/mission-vision-hero-v2.png",
+    academics: "/images/leadership-hero-v2.png",
+    admissions: "/images/admissions-documents-hero-v2.png",
+    "news-events": "/images/calendar-hero-v2.png",
+    contact: "/images/mission-vision-hero-v2.png",
+  };
+  const heroImage = content?.heroImage ?? categoryHeroImages[section];
 
   if (!content) {
     return (

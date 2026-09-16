@@ -80,13 +80,22 @@ export default function CareerPage() {
       }}
     >
       <section className="container-page">
-        <div className="max-w-4xl">
+        <div
+          className="relative overflow-hidden rounded-[2rem] border p-6 md:p-10 lg:p-12"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(3,10,28,.9) 0%, rgba(7,15,38,.58) 60%, rgba(7,15,38,.28) 100%), url('/images/leadership-hero-v2.png') center / cover",
+            borderColor: "rgba(167,139,250,.28)",
+            boxShadow: "0 24px 55px -34px rgba(15,23,42,.55)",
+          }}
+        >
+        <div className="relative z-10 max-w-4xl">
           <div
             className="inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-semibold mb-6 transition-colors duration-300"
             style={{
-              backgroundColor: isDark ? "rgba(30, 41, 59, 0.9)" : "#ffffff",
-              borderColor: isDark ? "#334155" : "#e2e8f0",
-              color: "var(--accent-primary)",
+              backgroundColor: "rgba(15, 23, 42, 0.35)",
+              borderColor: "rgba(255,255,255,.2)",
+              color: "#ede9fe",
             }}
           >
             {isArabic ? careerData.badgeAr : careerData.badgeEn}
@@ -95,7 +104,7 @@ export default function CareerPage() {
           <h1
             className="text-4xl md:text-5xl font-bold tracking-tight mb-6 transition-colors duration-300"
             style={{
-              color: isDark ? "#ffffff" : "#0f172a",
+              color: "#ffffff",
             }}
           >
             {isArabic ? careerData.titleAr : careerData.titleEn}
@@ -104,11 +113,12 @@ export default function CareerPage() {
           <p
             className="text-lg leading-8 max-w-3xl transition-colors duration-300"
             style={{
-              color: isDark ? "#cbd5e1" : "#475569",
+              color: "rgba(255,255,255,.84)",
             }}
           >
             {isArabic ? careerData.introAr : careerData.introEn}
           </p>
+        </div>
         </div>
 
         <div className="grid gap-6 mt-12">

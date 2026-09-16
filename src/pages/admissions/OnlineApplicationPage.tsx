@@ -134,9 +134,26 @@ return(
 
 <div className="container-page max-w-6xl">
 
-<h1 className="text-4xl font-serif font-bold text-center mb-16" style={{color:"var(--text-primary)"}}>
+<div
+className="relative mb-10 overflow-hidden rounded-[2rem] border px-6 py-12 text-center md:mb-14 md:px-10 md:py-16"
+style={{
+background:"linear-gradient(90deg, rgba(3,10,28,.9), rgba(7,15,38,.54)), url('/images/admissions-documents-hero-v2.png') center / cover",
+borderColor:"rgba(167,139,250,.28)",
+boxShadow:"0 24px 55px -34px rgba(15,23,42,.55)"
+}}
+>
+<div className="relative z-10">
+<div className="inline-flex rounded-full border border-white/20 bg-slate-950/30 px-4 py-2 text-sm font-bold text-violet-200 backdrop-blur-md">
+{isArabic ? "القبول والتسجيل" : "Admissions"}
+</div>
+<h1 className="mt-5 text-4xl font-serif font-bold text-white md:text-5xl">
 {isArabic ? "التسجيل الإلكتروني" : "Online Application"}
 </h1>
+<p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-white/80 md:text-base">
+{isArabic ? "ابدأ طلب الالتحاق بخطوات واضحة وآمنة، وسيتواصل معك فريق القبول بعد المراجعة." : "Start your application through clear, secure steps. Our admissions team will contact you after reviewing your request."}
+</p>
+</div>
+</div>
 
 {/* STEP BAR */}
 
