@@ -28,9 +28,9 @@ export default function BackToTop() {
           onClick={returnToTop}
           className="fixed bottom-5 left-5 z-40 inline-flex h-16 w-10 flex-col items-center justify-center gap-1.5 rounded-full border text-white shadow-lg transition-all duration-200 hover:-translate-y-1 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
           style={{
-            background: "linear-gradient(160deg, rgba(30,41,78,.94), rgba(68,42,129,.95))",
-            borderColor: "rgba(255,255,255,.28)",
-            boxShadow: "0 16px 32px rgba(15,23,42,.28)",
+            background: "linear-gradient(160deg, rgba(30,41,78,.66), rgba(68,42,129,.68))",
+            borderColor: "rgba(255,255,255,.2)",
+            boxShadow: "0 16px 32px rgba(15,23,42,.2)",
           }}
           aria-label={language === "ar" ? "العودة إلى أعلى الصفحة" : "Back to top"}
           title={language === "ar" ? "العودة إلى الأعلى" : "Back to top"}

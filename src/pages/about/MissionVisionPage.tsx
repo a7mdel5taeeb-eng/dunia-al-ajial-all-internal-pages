@@ -3,11 +3,6 @@ import {
   ArrowRight,
   Eye,
   Flag,
-  Globe2,
-  HeartHandshake,
-  Lightbulb,
-  ShieldCheck,
-  Sparkles,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../../contexts/LanguageContext";
@@ -20,104 +15,28 @@ export default function MissionVisionPage() {
     ? {
         eyebrow: "من نحن",
         title: "الرسالة والرؤية",
-        heroTitle: "بوصلةٌ تربوية تقود التميّز والنمو",
-        heroText:
-          "في مدرسة دنيا الأجيال العالمية، تنطلق رسالتنا ورؤيتنا من إيمانٍ عميق بأن التعليم الحقيقي لا يقتصر على التفوق الأكاديمي فحسب، بل يمتد ليبني الشخصية، ويغذّي الفضول، ويهيئ الطالب لحياةٍ ناجحة في عالم متغير.",
         missionBadge: "الرِّسالة",
-        missionTitle: "نزرع بيئة تعليمية يزدهر فيها الجميع",
+        missionTitle: "تهيئة بيئة تعليمية ناجحة",
         missionText:
-          "تهيئة بيئة تعليمية ناجحة تُعزِّز النموَّ الأكاديمي المتميِّز، وترعى الصحةَ النفسية والاجتماعية والجسدية لجميع الطلاب.",
+          "تهيئة بيئة تعليمية ناجحة تُعزِّز النموَّ الأكاديمي المتميِّز، وترعى الصحةَ النفسية والاجتماعية والبدنية لجميع الطلاب.",
         visionBadge: "الرؤية",
-        visionTitle: "نطمح إلى مجتمع تعليمي رائد",
+        visionTitle: "مجتمع تعليمي رائد",
         visionText:
-          "أن نكون مجتمعاً تعليمياً رائداً، حيث يشكّل الفضول الفكريّ وأصالة الأخلاق والمواطنة العالميّة الواعية دعائمَ متينةً تُعدُّ الطالب ليزدهر في عالمنا المتغيّر.",
-        valuesTitle: "مرتكزاتنا الأساسية",
-        values: [
-          {
-            title: "التميّز الأكاديمي",
-            text: "نؤمن بتقديم تعليم قوي يطوّر المعرفة والمهارات ويقود إلى نتائج متميزة.",
-            icon: Sparkles,
-          },
-          {
-            title: "النمو الشامل",
-            text: "نهتم بالطالب فكريًا ونفسيًا واجتماعيًا وجسديًا ليبلغ أفضل صورة من ذاته.",
-            icon: HeartHandshake,
-          },
-          {
-            title: "الفضول الفكري",
-            text: "نحفّز حب السؤال والاستكشاف والتفكير العميق بوصفه أساسًا للتعلّم الحقيقي.",
-            icon: Lightbulb,
-          },
-          {
-            title: "القيم والأخلاق",
-            text: "نبني الشخصية على الاحترام، والأمانة، والانضباط، وتحمل المسؤولية.",
-            icon: ShieldCheck,
-          },
-          {
-            title: "المواطنة العالمية",
-            text: "نُعدّ طلابنا ليكونوا واعين بالعالم، منفتحين على التنوع، وقادرين على الإسهام الإيجابي فيه.",
-            icon: Globe2,
-          },
-          {
-            title: "القيادة والاتجاه",
-            text: "نقود العملية التعليمية برؤية واضحة ورسالة ثابتة تضع الطالب في قلب كل قرار.",
-            icon: Flag,
-          },
-        ],
-        closing:
-          "رسالتنا ورؤيتنا ليستا مجرد عبارات جميلة على صفحة، بل إطار حيّ يوجّه قراراتنا التعليمية ويشكّل تجربة الطالب اليومية داخل المدرسة.",
+          "رؤيتنا أن نكون مجتمعاً تعليمياً رائداً، يُمكّن الطلاب -عبر الفضول الفكري، وقوة الشخصية، والمواطنة العالمية، والتقنيات الحديثة- من الابتكار، والقيادة، والازدهار في عالمنا المتغيّر.",
         exploreBtn: "استكشف برامجنا الأكاديمية",
         homeBtn: "العودة للرئيسية",
       }
     : {
         eyebrow: "About Us",
         title: "Mission & Vision",
-        heroTitle: "A Clear Educational Direction for Excellence and Growth",
-        heroText:
-          "At Dunia Al-Ajial International School, our mission and vision are rooted in the belief that meaningful education goes beyond academic achievement to build character, inspire curiosity, and prepare students for a successful life in a changing world.",
         missionBadge: "Our Mission",
-        missionTitle: "Creating a learning environment where every learner can thrive",
+        missionTitle: "A Successful Learning Environment",
         missionText:
-          "Cultivating a successful learning environment that fosters exceptional academic growth and nurtures the social, emotional, and physical well-being of all.",
+          "Our Mission is to cultivate a successful learning environment that fosters exceptional academic growth and nurtures the social, emotional, and physical well-being of every student.",
         visionBadge: "Our Vision",
-        visionTitle: "Becoming a leading learning community",
+        visionTitle: "A Leading Learning Community",
         visionText:
-          "To be a leading learning community where intellectual curiosity, strength of character, and commitment to global citizenship prepare students to thrive in a changing world.",
-        valuesTitle: "Our Core Pillars",
-        values: [
-          {
-            title: "Academic Excellence",
-            text: "We provide a strong educational foundation that develops knowledge, skills, and outstanding achievement.",
-            icon: Sparkles,
-          },
-          {
-            title: "Whole-Child Development",
-            text: "We care for students intellectually, socially, emotionally, and physically so they can grow into their best selves.",
-            icon: HeartHandshake,
-          },
-          {
-            title: "Intellectual Curiosity",
-            text: "We encourage students to ask, explore, and think deeply as the heart of meaningful learning.",
-            icon: Lightbulb,
-          },
-          {
-            title: "Character & Values",
-            text: "We nurture integrity, respect, responsibility, and strong moral character in everyday school life.",
-            icon: ShieldCheck,
-          },
-          {
-            title: "Global Citizenship",
-            text: "We prepare students to engage thoughtfully with the world, appreciate diversity, and contribute positively to society.",
-            icon: Globe2,
-          },
-          {
-            title: "Purposeful Direction",
-            text: "Our mission and vision guide every educational choice with clarity, purpose, and student-centered focus.",
-            icon: Flag,
-          },
-        ],
-        closing:
-          "Our mission and vision are not simply statements on a page; they are a living framework that guides our educational decisions and shapes the daily student experience.",
+          "Our vision is to be a leading learning community where intellectual curiosity, strength of character, global citizenship, and modern technologies empower students to innovate, lead, and thrive in an ever-changing world.",
         exploreBtn: "Explore Our Academic Programs",
         homeBtn: "Back to Home",
       };
@@ -164,13 +83,6 @@ export default function MissionVisionPage() {
                 {content.title}
               </h1>
 
-              <p className="mt-5 text-xl md:text-2xl font-semibold text-white/95">
-                {content.heroTitle}
-              </p>
-
-              <p className="mt-5 max-w-4xl mx-auto text-base md:text-lg leading-8 md:leading-9 text-white/80">
-                {content.heroText}
-              </p>
             </motion.div>
           </div>
         </section>
@@ -271,90 +183,6 @@ export default function MissionVisionPage() {
               </p>
             </motion.div>
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.4 }}
-            className="max-w-6xl mx-auto mt-16 md:mt-20"
-          >
-            <div className="text-center mb-8 md:mb-10">
-              <h2
-                className="text-3xl md:text-4xl font-bold font-serif"
-                style={{ color: "var(--text-primary)" }}
-              >
-                {content.valuesTitle}
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-              {content.values.map((item, index) => {
-                const Icon = item.icon;
-                return (
-                  <motion.div
-                    key={item.title}
-                    initial={{ opacity: 0, y: 22 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-40px" }}
-                    transition={{ duration: 0.35, delay: index * 0.05 }}
-                    className="rounded-[1.8rem] border p-6 md:p-7 h-full"
-                    style={{
-                      background:
-                        "color-mix(in srgb, var(--bg-elevated) 88%, transparent)",
-                      borderColor:
-                        "color-mix(in srgb, var(--accent-primary) 12%, var(--border-color))",
-                      boxShadow: "0 18px 50px -32px rgba(15,23,42,.22)",
-                    }}
-                  >
-                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-5 bg-violet-500/10 text-violet-600 dark:bg-violet-500/15 dark:text-violet-300">
-                      <Icon className="w-7 h-7" />
-                    </div>
-
-                    <h3
-                      className="text-2xl font-bold font-serif mb-4"
-                      style={{ color: "var(--text-primary)" }}
-                    >
-                      {item.title}
-                    </h3>
-
-                    <p
-                      className="text-[0.98rem] md:text-[1.02rem] leading-8"
-                      style={{ color: "var(--text-secondary)" }}
-                    >
-                      {item.text}
-                    </p>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.4 }}
-            className="max-w-5xl mx-auto mt-16 md:mt-20 text-center"
-          >
-            <div
-              className="rounded-[2rem] border p-6 md:p-8"
-              style={{
-                background:
-                  "color-mix(in srgb, var(--bg-elevated) 88%, transparent)",
-                borderColor:
-                  "color-mix(in srgb, var(--accent-primary) 10%, var(--border-color))",
-                boxShadow: "0 18px 50px -32px rgba(15,23,42,.22)",
-              }}
-            >
-              <p
-                className="text-lg md:text-xl leading-8 md:leading-9"
-                style={{ color: "var(--text-secondary)" }}
-              >
-                {content.closing}
-              </p>
-            </div>
-          </motion.div>
 
           <div className="max-w-6xl mx-auto mt-10 flex flex-wrap gap-4 justify-center md:justify-start">
             <Link
