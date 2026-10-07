@@ -1,10 +1,14 @@
-import { Menu, X, Globe, Moon, Sun, ChevronDown } from "lucide-react";
+import { Menu, X, Globe, Moon, Sun, ChevronDown, ExternalLink } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useTheme } from "../contexts/ThemeContext";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence, type Variants } from "motion/react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { NavItem } from "../data/navigation";
+
+type MenuItem = NavItem & {
+  externalLinks?: Array<{ label: string; href: string }>;
+};
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -31,12 +35,19 @@ export default function Header() {
     { key: "calendar", to: "/about/calendar" },
   ];
 
-  const academicsItems: NavItem[] = [
+  const academicsItems: MenuItem[] = [
     { key: "directorWord", to: "/academics/director-word" },
     { key: "earlyChildhood", to: "/academics/early-childhood" },
     { key: "elementary", to: "/academics/elementary-school" },
     { key: "middleHigh", to: "/academics/middle-high-school" },
-    { key: "studentPortal", to: "/academics/student-portal" },
+    {
+      key: "studentPortal",
+      to: "/academics/student-portal",
+      externalLinks: [
+        { label: "OBE Learn", href: "https://www.obelearn.com/auth" },
+        { label: "Eduverse LMS", href: "https://student.eduverse-lms.com/#/login" },
+      ],
+    },
   ];
 
   const admissionsItems: NavItem[] = [
@@ -237,7 +248,7 @@ export default function Header() {
   const renderDesktopDropdown = (
     dropdownKey: string,
     label: string,
-    items: NavItem[],
+    items: MenuItem[],
     menu: Record<string, string>,
     widthClass: string = "w-72"
   ) => (
@@ -281,19 +292,42 @@ export default function Header() {
         }}
       >
         <div className="p-2">
-          {items.map((item) => (
-            <button
-              key={item.key}
-              type="button"
-              onClick={() => handleNavAction(item.to)}
-              className={`${dropdownItemClass} w-full text-start`}
-              style={{ color: theme === "dark" ? "#e5edf8" : "#334155" }}
-              onMouseEnter={handleDropdownEnter}
-              onMouseLeave={handleDropdownLeave}
-            >
-              {getMenuLabel(menu, item.key)}
-            </button>
-          ))}
+          {items.map((item) =>
+            item.externalLinks ? (
+              <div key={item.key} className="px-4 py-3">
+                <p className="text-sm font-medium leading-snug" style={{ color: theme === "dark" ? "#e5edf8" : "#334155" }}>
+                  {getMenuLabel(menu, item.key)}
+                </p>
+                <div className="mt-2 space-y-1 border-s ps-3" style={{ borderColor: theme === "dark" ? "rgba(148,163,184,.26)" : "rgba(148,163,184,.32)" }}>
+                  {item.externalLinks.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center justify-between gap-3 rounded-lg px-2.5 py-2 text-sm transition-colors duration-150 hover:bg-violet-100 dark:hover:bg-white/5 hover:text-violet-700 dark:hover:text-white"
+                      style={{ color: theme === "dark" ? "#cbd5e1" : "#475569" }}
+                    >
+                      {link.label}
+                      <ExternalLink className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <button
+                key={item.key}
+                type="button"
+                onClick={() => handleNavAction(item.to)}
+                className={`${dropdownItemClass} w-full text-start`}
+                style={{ color: theme === "dark" ? "#e5edf8" : "#334155" }}
+                onMouseEnter={handleDropdownEnter}
+                onMouseLeave={handleDropdownLeave}
+              >
+                {getMenuLabel(menu, item.key)}
+              </button>
+            )
+          )}
         </div>
       </div>
     </div>
@@ -302,7 +336,7 @@ export default function Header() {
   const renderMobileDropdown = (
     dropdownKey: string,
     label: string,
-    items: NavItem[],
+    items: MenuItem[],
     menu: Record<string, string>
   ) => (
     <motion.div variants={mobileMenuItemVariants} className="w-full rounded-2xl overflow-hidden">
@@ -338,17 +372,40 @@ export default function Header() {
             className="overflow-hidden"
           >
             <div className="pb-2 pt-1 px-2 space-y-1">
-              {items.map((item) => (
-                <button
-                  key={item.key}
-                  type="button"
-                  onClick={() => handleMobileNavigate(item.to)}
-                  className="block w-full text-start px-4 py-2.5 rounded-xl text-sm leading-snug transition-colors duration-150 hover:bg-violet-100 dark:hover:bg-white/5 hover:text-violet-700 dark:hover:text-white"
-                  style={{ color: "var(--text-secondary)" }}
-                >
-                  {getMenuLabel(menu, item.key)}
-                </button>
-              ))}
+              {items.map((item) =>
+                item.externalLinks ? (
+                  <div key={item.key} className="px-4 py-2.5">
+                    <p className="text-sm leading-snug" style={{ color: "var(--text-secondary)" }}>
+                      {getMenuLabel(menu, item.key)}
+                    </p>
+                    <div className="mt-1.5 space-y-1 border-s ps-3" style={{ borderColor: "var(--border-color)" }}>
+                      {item.externalLinks.map((link) => (
+                        <a
+                          key={link.href}
+                          href={link.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="flex items-center justify-between gap-3 rounded-lg px-2.5 py-2 text-sm transition-colors duration-150 hover:bg-violet-100 dark:hover:bg-white/5 hover:text-violet-700 dark:hover:text-white"
+                          style={{ color: "var(--text-secondary)" }}
+                        >
+                          {link.label}
+                          <ExternalLink className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <button
+                    key={item.key}
+                    type="button"
+                    onClick={() => handleMobileNavigate(item.to)}
+                    className="block w-full text-start px-4 py-2.5 rounded-xl text-sm leading-snug transition-colors duration-150 hover:bg-violet-100 dark:hover:bg-white/5 hover:text-violet-700 dark:hover:text-white"
+                    style={{ color: "var(--text-secondary)" }}
+                  >
+                    {getMenuLabel(menu, item.key)}
+                  </button>
+                )
+              )}
             </div>
           </motion.div>
         )}
