@@ -26,6 +26,7 @@ const EarlyChildhoodPage = lazy(() => import("./pages/academics/EarlyChildhoodPa
 const AdmissionProcessPage = lazy(() => import("./pages/admissions/AdmissionProcessPage"));
 const RequirementsPage = lazy(() => import("./pages/admissions/RequirementsPage"));
 const FinancialSystemPage = lazy(() => import("./pages/admissions/FinancialSystemPage"));
+const FeesPage = lazy(() => import("./pages/admissions/FeesPage"));
 const OnlineApplicationPage = lazy(() => import("./pages/admissions/OnlineApplicationPage"));
 const GenericContentPage = lazy(() => import("./pages/GenericContentPage"));
 const CareerPage = lazy(() => import("./pages/CareerPage"));
@@ -134,6 +135,7 @@ export default function App() {
               <Route path="/admissions/admission-process" element={<AdmissionProcessPage />} />
               <Route path="/admissions/requirements" element={<RequirementsPage />} />
               <Route path="/admissions/financial-system" element={<FinancialSystemPage />} />
+              <Route path="/admissions/fees" element={<FeesPage />} />
               <Route path="/admissions/online-application" element={<OnlineApplicationPage />} />
 
               {/* New Pages */}

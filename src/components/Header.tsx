@@ -433,7 +433,11 @@ export default function Header() {
       <div className="container-page">
         <div className="flex items-center justify-between gap-2 md:gap-4">
           <div className="flex flex-1 xl:flex-none items-center gap-2.5 xl:gap-3 min-w-0">
-            <Link to="/" className="flex items-center gap-2.5 md:gap-3 shrink-0 min-w-0 max-w-full xl:max-w-none">
+            <Link
+              to="/"
+              onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}
+              className="flex items-center gap-2.5 md:gap-3 shrink-0 min-w-0 max-w-full xl:max-w-none"
+            >
               <img
                 src="/images/logo.webp"
                 alt={t.header.schoolName}

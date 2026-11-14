@@ -85,7 +85,12 @@ export default function Footer() {
           <div className="grid grid-cols-1 xl:grid-cols-[1.2fr_0.95fr_1.2fr] gap-8 xl:gap-10 items-start">
             {/* Brand */}
             <div className="min-w-0">
-              <div className="flex items-start gap-4">
+              <Link
+                to="/"
+                onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}
+                className="flex items-start gap-4 rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2"
+                aria-label={t.header.schoolName}
+              >
                 <img
                   src="/images/logo.webp"
                   alt={t.header.schoolName}
@@ -107,7 +112,7 @@ export default function Footer() {
                     {t.header.schoolType}
                   </p>
                 </div>
-              </div>
+              </Link>
 
               <p
                 className={`mt-5 text-[15px] md:text-base leading-8 max-w-2xl ${
